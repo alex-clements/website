@@ -1,0 +1,15 @@
+.icon-text {
+  font-size: 25px;
+  font-family: 'VT323', monospace;
+  font-weight: lighter;
+}
+
+.resume-contents-container {
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.resume-contents-container::-webkit-scrollbar {
+  display: none
+}

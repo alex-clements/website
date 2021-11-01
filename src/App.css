@@ -1,3 +1,63 @@
+.background-body {
+  position: absolute;
+  overflow: hidden;
+  background-color: #008080;
+  height: 100%;
+  width: 100%;
+}
+
+.underline {
+  border-style: solid;
+  border-color: white;
+  height: 0px;
+  width: 50%;
+  border-width: 1px;
+}
+
+.background-body-circle {
+  border-radius: 50%;
+  background-color: #405E8C;
+  position: absolute;
+  top: -25%;
+  left: -5%;
+  height: 150%;
+  width: 110%;
+}
+
+.container-main {
+  position: absolute;
+  top: calc(1vh + 35%);
+  left: 0px;
+  width: 100%;
+}
+
+.font-main {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 60px;
+}
+
+.font-secondary {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 50px;
+}
+
+.font-white {
+  color: white;
+}
+
+.no-list-style {
+  list-style: none;
+}
+
+.border-true {
+  border-style: solid;
+}
+
+/* .middle-align {
+  display: flex;
+  align-items: center;
+} */
+
 .App {
   text-align: center;
 }
@@ -35,4 +95,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.highlightedNavBarItem {
+  text-shadow: 0px 2px 20px #fff  /* inner white */
 }

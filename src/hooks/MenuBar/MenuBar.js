@@ -39,9 +39,9 @@ export default function MenuBar(props) {
 
   return (
         <div className="menu-bar">
-          <button className={buttonActive ? "menu-button-active" : "menu-button-inactive"} onClick={expandMenu}>Menu</button>
           {menuVisible ? <MenuBarMenu  onOffClick={expandMenu} menuClosing={menuClosing} menuVisible={menuVisible} /> : null}
           <div className="icon-row d-flex">
+            <button className={buttonActive ? "menu-button menu-button-active" : "menu-button menu-button-inactive"} onClick={expandMenu}>Menu</button>
             {props.menuItems.map((item) => 
             <MenuBarItem 
             src={item["icon"]} 

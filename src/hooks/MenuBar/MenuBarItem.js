@@ -35,6 +35,7 @@ export default function MenuBarItem(props) {
         onClick={handleClick}
         style={styleProps()}
         ref={thisElement} >
+            
             <img className="menu-bar-item-image" height="20px" width="20px" src={props.src} />
             <p className="menu-bar-item-text mb-0">{props.windowTitle}</p>
         </motion.button>

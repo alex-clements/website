@@ -46,13 +46,16 @@ export default function ReadMeFile(props) {
   const handleDoubleClick = () => {
     var desktopIconX = 0;
     var desktopIconY = 0;
+    var initialWindowWidth = window.innerWidth * 3 / 4;
+    var initialWindowHeight = window.innerHeight * 3 / 4;
+
     props.onOpen(2, 
-                 500, 
-                 600, 
+                 initialWindowWidth, 
+                 initialWindowHeight, 
                  200, 
                  200, 
-                 window.innerWidth/2 - 250, 
-                 window.innerHeight/2 - 300, 
+                 window.innerWidth/2 - initialWindowWidth / 2, 
+                 window.innerHeight/2 - initialWindowHeight / 2, 
                  "RESUME.DOC", 
                  ResumeContents, 
                  fileIcon,

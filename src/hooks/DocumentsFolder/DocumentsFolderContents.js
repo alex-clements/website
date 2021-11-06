@@ -22,16 +22,16 @@ export default function DocumentsFolderContents(props) {
                 <table className="table table-borderless">
                     <thead className="documents-table-heading">
                         <tr>
-                            <th scope="col">
+                            <td scope="col">
                                 <div className="d-flex flex-row">
                                 <p className="mb-0">Filename</p>
                                 </div>
-                            </th>
+                            </td>
                         </tr>
                     </thead>
                     <tbody>
-                    {fs.getChildren()[0].getData().map(item => (
-                        <DocumentsFolderRow onOpenFile={handleOpenFile} name={item.name} icon={item.icon} fileId={item.fileId}
+                    {fs.getChildren()[0].getData().map((item, index) => (
+                        <DocumentsFolderRow key={index} onOpenFile={handleOpenFile} name={item.name} icon={item.icon} fileId={item.fileId}
                         initialWidth={item.initialWidth} initialHeight={item.initialHeight} contents={item.contents} />
                     ))}
                     </tbody>

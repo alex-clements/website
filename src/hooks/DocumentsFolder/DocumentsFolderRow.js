@@ -44,7 +44,6 @@ export default function DocumentsFolderRow(props) {
     }
 
     const styleProps = () => {
-        console.log('calculating style');
         return isActive ? 'documents-row-active' : 'documents-row-inactive';
     }
 
@@ -52,7 +51,6 @@ export default function DocumentsFolderRow(props) {
     return (
         <tr ref={thisElement} className={styleProps()}>
             <td className="px-0 py-0">
-                <th scope="row"></th>
                 <div className="d-flex flex-row" onDoubleClick={handleOpenFile}>
                     <img height="=20" width="20" className="float-left mx-1 my-1" src={props.icon} />
                     <p className="mb-0 float-left">{props.name}</p>

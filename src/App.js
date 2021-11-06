@@ -85,8 +85,6 @@ function App() {
                      desktopIconY,
                      menuIconX,
                      menuIconY) => {
-    console.log(activeID);
-    console.log(component);
     var lastInt = currentKey;
     var currentWindows = [...windows]
 
@@ -261,7 +259,6 @@ function App() {
   const modifyFileStructure = () => {
     setFileStructure(() => {
       let jasper = Object.assign({}, fileStructure);  // creating copy of state variable jasper
-      console.log(jasper)
       jasper['children'][1]['data'] = [];
       return jasper
       // jasper['children'][1]['data'] = [];                // update the name property, assign a new value                 

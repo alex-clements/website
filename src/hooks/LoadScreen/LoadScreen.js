@@ -39,7 +39,11 @@ export default function LoadScreen(props) {
     const textBlock6 = () => {
       const myElement2 = document.querySelector('#myElement6')
       init(myElement2, {showCursor: true, disableBackTyping: true, cursorChar: "_", typeSpeed: 10, 
-                       strings: ['BOOTING UP...'], startDelay: 100, onFinished: setTimeout(loadFinished, 1500)})
+                       strings: ['BOOTING UP...'], startDelay: 100, onFinished: finish})
+    }
+
+    const finish = () => {
+      setTimeout(loadFinished, 1500);
     }
 
     const loadFinished = () => {

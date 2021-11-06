@@ -47,8 +47,6 @@ export default function WindowComponent(props) {
   useEffect(() => {
     setMounted(true);
     document.addEventListener('mousedown', outsideClickListener);
-    console.log(props.desktopIconX);
-    console.log(props.desktopIconY);
 
     return function cleanup() {
       document.removeEventListener('mousedown', outsideClickListener)
@@ -57,9 +55,6 @@ export default function WindowComponent(props) {
 
   useEffect(() => {
     setIsActive(props.activeStatus);
-    // if (minimizedFlag == true && props.minimizedFlag == false) {
-    //   handleMinimize();
-    // }
   }, [props])
 
   useEffect(() => {
@@ -105,7 +100,6 @@ export default function WindowComponent(props) {
     if (!minimizedFlag) {
       setMinimizing(true);
       setMinimizedFlag(true);
-      // props.handleMinimize(props.index);
       setTimeout(function() {setMinimizing(false)}, 1000);
     } else {
       setMinimizing(true);
@@ -240,9 +234,20 @@ export default function WindowComponent(props) {
   const componentStyle = () => {
     return (
       {
-        "zIndex": isActive ? 100: 1,
+        "zIndex": isActive || minimizing ? 100: 1,
         "filter": isActive ? "brightness(100%) grayscale(0%) drop-shadow(3px 3px 3px black)" : "brightness(80%) grayscale(30%) drop-shadow(0 0)"
       })}
+
+    
+  function testFunction(a,b,c,d,e,f,g,h,i,j,k,l,m,n) {
+    console.log("here");
+    props.onOpenFile(a,b,c,d,e,f,g,h,i,j,k,l,m,n)
+  }
+
+  const contentsBorderStyleProps = {
+    "height": "calc(100% - 30px)",
+    "width":"100%"
+  }
 
   return (
     <motion.div
@@ -277,8 +282,10 @@ export default function WindowComponent(props) {
               </div>
             </div>
         </motion.div>
-            <div className="py-2 px-2 window-component-contents-border">
-            {props.passedComponent()}
+            <div className="py-2 px-2 window-component-contents-border" style={contentsBorderStyleProps}>
+              <div className="window-component-contents-inner-border">
+                {props.passedComponent != null ? props.passedComponent(testFunction) : null}
+              </div>
             </div>
         </div>
         <WindowRightBar isActive={isActive} onDragBar={handleDragRightBar} onDragRightBarEnd={handleDragRightBarEnd}/>

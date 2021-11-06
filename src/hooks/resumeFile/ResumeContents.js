@@ -1,15 +1,16 @@
 import React from 'react';
+import './ResumeFile.css';
 
 export default function ResumeContents(props) {
 
   const styleProps = {
-    "height": "calc(100% - 30px)",
+    "height": "calc(100%)",
     "width":"100%",
     "backgroundColor": "white"
   }
 
   return (
-    <div className="text-start resume-contents-container" style={styleProps}>
+    <div className="text-start resume-contents-container px-1" style={styleProps}>
       <h1 className="text-center">Resume</h1>
       <br />
       <h3>Education</h3>

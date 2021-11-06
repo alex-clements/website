@@ -60,6 +60,16 @@
 }
 
 .window-component-contents-border {
-  background-color: #FFFFFF;
+  background-color: #bbbbbb;
   height: 100%;
+}
+
+.window-component-contents-inner-border {
+  background-color: #bbbbbb;
+  height: 100%;
+  border: solid;
+  border-color:#000000 #FFFFFF #FFFFFF #000000;
+  border-width: 2px;
+  -ms-overflow-style: none;
+  overflow-y: scroll;
 }

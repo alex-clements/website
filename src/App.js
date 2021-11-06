@@ -2,10 +2,11 @@ import './App.css';
 import WindowComponent from './hooks/WindowComponent/WindowComponent.js'
 import React, { useState, useEffect, useRef} from 'react';
 import MenuBar from './hooks/MenuBar/MenuBar.js'
-import ReadMeFile from './hooks/readMeFile/readMeFile.js'
-import ResumeFile from './hooks/resumeFile/ResumeFile.js'
 import LoadScreen from './hooks/LoadScreen/LoadScreen.js';
 import OSScreen from './hooks/osScreen/osScreen.js';
+import instantiateFileStructure from './instantiateFileStructure.js';
+import instantiateFileStructureFromData from './instantiateFileStructureFromData.js';
+import DesktopFile from './hooks/DesktopFile/DesktopFile.js';
 
 function App() {
   const [windows, setWindows] = useState([])
@@ -13,6 +14,11 @@ function App() {
   const desktopElement = useRef();
   const [loadComplete, setLoadComplete] = useState(false);
   const [osScreenComplete, setOSScreenComplete] = useState(false);
+  const [fileStructure, setFileStructure] = useState(null);
+
+  useEffect(() => {
+    setFileStructure(instantiateFileStructure());
+  }, []);
 
   const createWindows = () => {
     return windows.map((item) =>
@@ -39,6 +45,10 @@ function App() {
         maximizedFlag={item["maximizedFlag"]}
         minimizedFlag={item["minimizedFlag"]}
         handleMinimize={(e) => changeMinimizedStatus(e)}
+        onOpenFile={(activeID,initialWindowWidth,initialWindowHeight,minWindowWidth,minWindowHeight, initialLeft, 
+          initialTop,windowTitle,component,icon,desktopIconX,desktopIconY,menuIconX,menuIconY) => addWindow(activeID,
+          initialWindowWidth,initialWindowHeight,minWindowWidth,minWindowHeight,initialLeft,initialTop,windowTitle,
+          component,icon,desktopIconX,desktopIconY,menuIconX,menuIconY)}
         />
     )
   }
@@ -48,8 +58,7 @@ function App() {
 
     return function cleanup() {
       document.removeEventListener('mousedown', outsideClickListener)
-    }
-  }, []);
+    }}, []);
 
   useEffect(() => {}, [windows]);
 
@@ -76,6 +85,8 @@ function App() {
                      desktopIconY,
                      menuIconX,
                      menuIconY) => {
+    console.log(activeID);
+    console.log(component);
     var lastInt = currentKey;
     var currentWindows = [...windows]
 
@@ -227,14 +238,44 @@ function App() {
     
   }
 
+  const createDesktopFiles = () => {
+    if (fileStructure != null) {
+      return fileStructure['children'][1]['data'].map((item, index) => 
+      <DesktopFile 
+      onOpen={addWindow} 
+      fileIcon={item['icon']}
+      contents={item['contents']}
+      name={item['name']}
+      fileId={item['fileId']}
+      id={item['id']}
+      key={index}
+      initialWidth={item['initialWidth']}
+      initialHeight={item['initialHeight']}
+      />
+      )
+    } else {
+      return (<div></div>)
+    }
+  }
+
+  const modifyFileStructure = () => {
+    setFileStructure(() => {
+      let jasper = Object.assign({}, fileStructure);  // creating copy of state variable jasper
+      console.log(jasper)
+      jasper['children'][1]['data'] = [];
+      return jasper
+      // jasper['children'][1]['data'] = [];                // update the name property, assign a new value                 
+      // return { jasper };   
+    })
+  }
+
   return (
     <div className="App">
-      {loadComplete ? null : <LoadScreen onComplete={handleLoadComplete} />}
-      {osScreenComplete ? null : <OSScreen onComplete={handleOsComplete} />}
+      {/* {loadComplete ? null : <LoadScreen onComplete={handleLoadComplete} />}
+      {osScreenComplete ? null : <OSScreen onComplete={handleOsComplete} />} */}
       <div style={{"zIndex" : 1}} ref={desktopElement} id="background-body" className="background-body">
           {createWindows()}
-          <ReadMeFile onOpen={addWindow}/>
-          <ResumeFile onOpen={addWindow}/>
+          {createDesktopFiles()}
       </div>
       <MenuBar menuItems={createMenuItems()} onIconSelect={changeActiveItemId} onFileIconMount={handleFileIconMount}/>
     </div>

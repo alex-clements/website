@@ -31,7 +31,7 @@ export default function MenuBarMenu(props) {
 
   const animateVals = () => {
     return ({
-      height: props.menuClosing ? "0px" : "200px"
+      height: props.menuClosing ? "0px" : "50px"
     })
   }
 
@@ -42,9 +42,9 @@ export default function MenuBarMenu(props) {
     })
   }
 
-  const testArray = ["Other", "Other", "Other", "Shut Down"];
+  const testArray = ["Shut Down"];
 
-  const testing = testArray.map(i => <MenuBarMenuItem key={i} item={i}/>);
+  const testing = testArray.map((i, index) => <MenuBarMenuItem key={index} item={i}/>);
 
   return (
         <motion.div 

@@ -12,8 +12,8 @@ export default function MenuBarMenuItem(props) {
     const imageStyle = {
         "position": "relative",
         "float": "left",
-        "padding-top": "10px",
-        "padding-left": "5px"
+        "paddingTop": "10px",
+        "paddingLeft": "5px"
     }
 
     const textStyle = {

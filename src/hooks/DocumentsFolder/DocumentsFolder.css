@@ -1,0 +1,18 @@
+.documents-row-active {
+    background-color: blue;
+    color: white;
+}
+
+.documents-row-inactive {
+    background-color: white;
+    color: black;
+}
+
+.documents-table-heading {
+    background-color: #bbbbbb;
+    border: solid;
+    border-width: 2px;
+    border-color: black;
+
+    border-color:#FFFFFF #000000 #000000 #FFFFFF;
+}

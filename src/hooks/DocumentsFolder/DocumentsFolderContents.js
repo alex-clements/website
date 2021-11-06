@@ -2,16 +2,39 @@ import React, {useState, useEffect} from 'react';
 import instantiateFileStructure from '../../instantiateFileStructure.js';
 import instantiateFileStructureFromData from '../../instantiateFileStructureFromData.js';
 import DocumentsFolderRow from './DocumentsFolderRow.js';
+import CosmoPicture from '../../data/cosmo.jpeg';
 
 export default function DocumentsFolderContents(props) {
     const [fileStructure, setFileStructure] = useState(null);
 
     useEffect(() => {
         setFileStructure(instantiateFileStructure());
+        addContentsToCache();
     }, [])
 
     const handleOpenFile = (a, b, c, d, e, f, g, h, i, j, k, l, m, n) => {
         props(a, b, c, d, e, f, g, h, i, j, k, l, m, n);
+    }
+
+    const addContentsToCache = () => {
+        
+        const imgs = [CosmoPicture];
+        cacheImages(imgs);
+    }
+    
+    const cacheImages = async (srcArray) => {
+        const promises = await srcArray.map((src) => {
+            return new Promise(function(resolve, reject) {
+                const img = new Image();
+
+                img.src = src;
+                img.onload = resolve();
+                img.onerror = reject();
+            })
+        })
+
+        await Promise.all(promises);
+        console.log("images cached!");
     }
 
     const renderFiles = () => {

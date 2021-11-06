@@ -49,7 +49,7 @@ export default function DocumentsFolderRow(props) {
 
 
     return (
-        <tr ref={thisElement} className={styleProps()}>
+        <tr ref={thisElement} className={styleProps()} draggable="true">
             <td className="px-0 py-0">
                 <div className="d-flex flex-row" onDoubleClick={handleOpenFile}>
                     <img height="=20" width="20" className="float-left mx-1 my-1" src={props.icon} />

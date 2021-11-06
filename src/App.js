@@ -258,11 +258,9 @@ function App() {
 
   const modifyFileStructure = () => {
     setFileStructure(() => {
-      let jasper = Object.assign({}, fileStructure);  // creating copy of state variable jasper
-      jasper['children'][1]['data'] = [];
-      return jasper
-      // jasper['children'][1]['data'] = [];                // update the name property, assign a new value                 
-      // return { jasper };   
+      let newFileStructure = Object.assign({}, fileStructure);
+      newFileStructure['children'][1]['data'] = [];
+      return newFileStructure
     })
   }
 

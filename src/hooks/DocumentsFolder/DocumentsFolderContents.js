@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
-import { useEffect } from 'react/cjs/react.development';
-import instantiateFileStructure from '../../instantiateFileStructure';
-import instantiateFileStructureFromData from '../../instantiateFileStructureFromData';
+import React, {useState, useEffect} from 'react';
+import instantiateFileStructure from '../../instantiateFileStructure.js';
+import instantiateFileStructureFromData from '../../instantiateFileStructureFromData.js';
 import DocumentsFolderRow from './DocumentsFolderRow';
 
 export default function DocumentsFolderContents(props) {

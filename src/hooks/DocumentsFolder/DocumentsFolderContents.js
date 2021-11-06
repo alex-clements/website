@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import instantiateFileStructure from '../../instantiateFileStructure.js';
 import instantiateFileStructureFromData from '../../instantiateFileStructureFromData.js';
-import DocumentsFolderRow from './DocumentsFolderRow';
+import DocumentsFolderRow from './DocumentsFolderRow.js';
 
 export default function DocumentsFolderContents(props) {
     const [fileStructure, setFileStructure] = useState(null);

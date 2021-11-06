@@ -271,8 +271,8 @@ function App() {
 
   return (
     <div className="App">
-      {/* {loadComplete ? null : <LoadScreen onComplete={handleLoadComplete} />}
-      {osScreenComplete ? null : <OSScreen onComplete={handleOsComplete} />} */}
+      {loadComplete ? null : <LoadScreen onComplete={handleLoadComplete} />}
+      {osScreenComplete ? null : <OSScreen onComplete={handleOsComplete} />}
       <div style={{"zIndex" : 1}} ref={desktopElement} id="background-body" className="background-body">
           {createWindows()}
           {createDesktopFiles()}

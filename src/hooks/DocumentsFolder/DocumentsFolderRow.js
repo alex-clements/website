@@ -48,8 +48,15 @@ export default function DocumentsFolderRow(props) {
     }
 
 
+
+    const onDragStart = (e) => {
+
+        e.dataTransfer.setData("drag-item", props.fileId);
+    }
+
+
     return (
-        <tr ref={thisElement} className={styleProps()} draggable="true">
+        <tr ref={thisElement} className={styleProps()} draggable="true" onDragStart={onDragStart}>
             <td className="px-0 py-0">
                 <div className="d-flex flex-row" onDoubleClick={handleOpenFile}>
                     <img height="=20" width="20" className="float-left mx-1 my-1" src={props.icon} />

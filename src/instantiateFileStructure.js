@@ -1,71 +1,25 @@
 import fileStructure from './fileStructureClass.js';
-import ReadMeContents from './hooks/readMeFile/ReadMeContents.js';
-import ResumeContents from './hooks/resumeFile/ResumeContents.js';
-import DocumentsFolderContents from './hooks/DocumentsFolder/DocumentsFolderContents.js';
-import readMeFileIcon from './hooks/readMeFile/Notepad.ico';
-import resumeFileIcon from './hooks/resumeFile/WordPad document.ico';
-import fileFolderIcon from './data/Folder.ico';
-import imageIcon from './data/Painting.ico';
-import CosmoFileContents from './hooks/CosmoFile/CosmoFileContents.js';
+import instantiateFiles from './instantiateFiles.js';
 
 export default function instantiateFileStructure() {
 
     var cDrive = new fileStructure();
+    cDrive.setName("cDrive");
     var documents = new fileStructure();
+    documents.setName("documents");
     var desktop = new fileStructure();
+    desktop.setName("desktop");
 
     cDrive.addChildNoParent(documents);
     cDrive.addChildNoParent(desktop);
 
-    const readMeFileData = {
-        'fileId': 1,
-        'name': 'README',
-        'dataType' : "file",
-        'contents' : ReadMeContents,
-        'icon' : readMeFileIcon,
-        'id' : 'readMeFile',
-        'initialWidth' : 200,
-        'initialHeight' : 300
-    }
+    var myMap = instantiateFiles();
 
-    const resumeFileData = {
-        'fileId': 2,
-        'name' : 'RESUME',
-        'dataType' : 'file',
-        'contents' : ResumeContents,
-        'icon' : resumeFileIcon,
-        'id' : 'resumeFile',
-        'initialWidth' : null,
-        'initialHeight' : null
-    }
+    desktop.addData(myMap.get(1));
+    desktop.addData(myMap.get(2));
+    desktop.addData(myMap.get(3));
 
-    const fileFolder = {
-        'fileId' : 3,
-        'name' : 'DOCUMENTS',
-        'dataType' : 'folder',
-        'contents' : DocumentsFolderContents,
-        'icon' : fileFolderIcon,
-        'id' : 'fileFolder',
-        'initialWidth' : null,
-        'initialHeight' : null
-    }
-
-    const cosmoFileData = {
-        'fileId' : 4,
-        'name' : 'COSMO',
-        'dataType' : 'file',
-        'contents' : CosmoFileContents,
-        'icon' : imageIcon,
-        'id' : 'cosmoFile',
-        'initialWidth' : 300,
-        'initialHeight' : 425
-    }
-
-    desktop.addData(readMeFileData);
-    desktop.addData(resumeFileData);
-    desktop.addData(fileFolder);
-
-    documents.addData(cosmoFileData);
+    documents.addData(myMap.get(4));
 
     return cDrive;
 

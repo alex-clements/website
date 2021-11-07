@@ -3,6 +3,11 @@ export default class fileStructure {
         this.parent = null;
         this.children = new Array();
         this.data = new Array();
+        this.name = null;
+    }
+
+    setName(name) {
+        this.name = name;
     }
 
     addChild(child) {
@@ -39,11 +44,9 @@ export default class fileStructure {
         this.data.push(element);
     }
 
-    removeData(element) {
-        for (var i=0; i<this.data.length; i++) {
-            if (this.data[i]['name'] == element) {
-                this.data.splice(i, 1);
-            }
+    removeData(index) {
+        if (index < this.data.length && index >= 0) {
+            this.data.splice(index, 1);
         }
     }
 

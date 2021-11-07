@@ -4,13 +4,17 @@ import instantiateFileStructureFromData from '../../instantiateFileStructureFrom
 import DocumentsFolderRow from './DocumentsFolderRow.js';
 import CosmoPicture from '../../data/cosmo.jpeg';
 
-export default function DocumentsFolderContents(props) {
+export default function DocumentsFolderContents(props, fileStructureProps) {
     const [fileStructure, setFileStructure] = useState(null);
 
     useEffect(() => {
-        setFileStructure(instantiateFileStructure());
+        setFileStructure(instantiateFileStructureFromData(fileStructureProps));
         addContentsToCache();
     }, [])
+
+    useEffect(() => {
+        setFileStructure(instantiateFileStructureFromData(fileStructureProps));
+    }, [fileStructureProps])
 
     const handleOpenFile = (a, b, c, d, e, f, g, h, i, j, k, l, m, n) => {
         props(a, b, c, d, e, f, g, h, i, j, k, l, m, n);
@@ -34,7 +38,6 @@ export default function DocumentsFolderContents(props) {
         })
 
         await Promise.all(promises);
-        console.log("images cached!");
     }
 
     const renderFiles = () => {
@@ -54,7 +57,7 @@ export default function DocumentsFolderContents(props) {
                     <tbody>
                     {fs.getChildren()[0].getData().map((item, index) => (
                         <DocumentsFolderRow key={index} onOpenFile={handleOpenFile} name={item.name} icon={item.icon} fileId={item.fileId}
-                        initialWidth={item.initialWidth} initialHeight={item.initialHeight} contents={item.contents} />
+                        initialWidth={item.initialWidth} initialHeight={item.initialHeight} contents={item.contents} id={item.id} dataType={item.dataType}/>
                     ))}
                     </tbody>
                 </table>
@@ -64,8 +67,12 @@ export default function DocumentsFolderContents(props) {
         }
     }
 
+    const styleProps = {
+        'height': '100%'
+    }
+
     return (
-    <div>
+    <div id="documents" style={styleProps}>
         {renderFiles()}
     </div>
     )

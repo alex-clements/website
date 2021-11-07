@@ -6,6 +6,7 @@ import LoadScreen from './hooks/LoadScreen/LoadScreen.js';
 import OSScreen from './hooks/osScreen/osScreen.js';
 import instantiateFileStructure from './instantiateFileStructure.js';
 import instantiateFileStructureFromData from './instantiateFileStructureFromData.js';
+import instantiateFiles from './instantiateFiles.js';
 import DesktopFile from './hooks/DesktopFile/DesktopFile.js';
 
 function App() {
@@ -15,10 +16,6 @@ function App() {
   const [loadComplete, setLoadComplete] = useState(false);
   const [osScreenComplete, setOSScreenComplete] = useState(false);
   const [fileStructure, setFileStructure] = useState(null);
-
-  useEffect(() => {
-    setFileStructure(instantiateFileStructure());
-  }, []);
 
   const createWindows = () => {
     return windows.map((item) =>
@@ -49,12 +46,14 @@ function App() {
           initialTop,windowTitle,component,icon,desktopIconX,desktopIconY,menuIconX,menuIconY) => addWindow(activeID,
           initialWindowWidth,initialWindowHeight,minWindowWidth,minWindowHeight,initialLeft,initialTop,windowTitle,
           component,icon,desktopIconX,desktopIconY,menuIconX,menuIconY)}
+        fileStructure={fileStructure}
         />
     )
   }
 
   useEffect(() => {
     document.addEventListener('mousedown', outsideClickListener);
+    setFileStructure(instantiateFileStructure());
 
     return function cleanup() {
       document.removeEventListener('mousedown', outsideClickListener)
@@ -122,7 +121,8 @@ function App() {
                          "menuIconX" : menuIconX,
                          "menuIconY" : menuIconY,
                          "maximizedFlag" : false,
-                         "minimizedFlag" : false
+                         "minimizedFlag" : false,
+                         "fileStructure" : fileStructure
                         });
     setWindows(currentWindows);
 
@@ -256,19 +256,50 @@ function App() {
     }
   }
 
-  const modifyFileStructure = () => {
-    setFileStructure(() => {
-      let newFileStructure = Object.assign({}, fileStructure);
-      newFileStructure['children'][1]['data'] = [];
-      return newFileStructure
-    })
+  const dragDropFunction = (e) => {
+    var fileId = e.dataTransfer.getData("drag-item");
+    var targetId = e.target.id;
+
+    if (targetId == "desktop" || targetId == "documents") {
+      var newFileStructure = instantiateFileStructureFromData(fileStructure);
+      var allFiles = instantiateFiles();
+      var myFile = allFiles.get(parseInt(fileId));
+
+      for (var i=0; i<newFileStructure.children.length; i++) {
+        if (newFileStructure.children[i].name == targetId) {
+          for (var j=0; j<newFileStructure.children[i].data.length; j++) {
+            if (newFileStructure.children[i].data[j]['fileId'] == parseInt(fileId)) {
+              return;
+            }
+          }
+        }
+      }
+
+      for (var i=0; i<newFileStructure.children.length; i++) {
+        for (var j=0; j<newFileStructure.children[i].data.length; j++) {
+          if (newFileStructure.children[i].data[j]['fileId'] == parseInt(fileId)) {
+            newFileStructure.children[i].removeData(j);
+          }
+        }
+      }
+
+      for (var i=0; i<newFileStructure.children.length; i++) {
+        if (newFileStructure.children[i].name == targetId) {
+          newFileStructure.children[i].addData(myFile);
+        }
+      }
+
+    } else {
+      return;
+    }
+    setFileStructure(newFileStructure);
   }
 
   return (
     <div className="App">
-      {/* {loadComplete ? null : <LoadScreen onComplete={handleLoadComplete} />}
-      {osScreenComplete ? null : <OSScreen onComplete={handleOsComplete} />} */}
-      <div style={{"zIndex" : 1}} ref={desktopElement} id="background-body" className="background-body">
+      {loadComplete ? null : <LoadScreen onComplete={handleLoadComplete} />}
+      {osScreenComplete ? null : <OSScreen onComplete={handleOsComplete} />}
+      <div style={{"zIndex" : 1}} ref={desktopElement} id="desktop" className="background-body" onDragOver={e => e.preventDefault()} onDrop={dragDropFunction}>
           {createWindows()}
           {createDesktopFiles()}
       </div>

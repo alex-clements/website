@@ -283,7 +283,7 @@ export default function WindowComponent(props) {
         </motion.div>
             <div className="py-2 px-2 window-component-contents-border" style={contentsBorderStyleProps}>
               <div className="window-component-contents-inner-border">
-                {props.passedComponent != null ? props.passedComponent(testFunction) : null}
+                {props.passedComponent != null ? props.passedComponent(testFunction, props.fileStructure) : null}
               </div>
             </div>
         </div>

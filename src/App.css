@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+.App {
+  overflow: hidden;
+}
+
 .underline {
   border-style: solid;
   border-color: white;

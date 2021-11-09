@@ -7,19 +7,19 @@ export default function captureAnalytics(stringArg) {
         body: JSON.stringify({ title: stringArg })
     };
 
-    fetch("/api", requestOptions)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("ERROR");
-        } else {
-            return response.json();
-        }
-    })
-    .then((responseJson) => {
-        console.log(responseJson)
-    })
-    .catch((error) => {
-        console.log(error);
-    })
+    // fetch("/api", requestOptions)
+    // .then(response => {
+    //     if (!response.ok) {
+    //         throw new Error("ERROR");
+    //     } else {
+    //         return response.json();
+    //     }
+    // })
+    // .then((responseJson) => {
+    //     console.log(responseJson)
+    // })
+    // .catch((error) => {
+    //     console.log(error);
+    // })
 
 }

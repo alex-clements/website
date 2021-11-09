@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef} from 'react';
 import MenuBar from './hooks/MenuBar/MenuBar.js'
 import LoadScreen from './hooks/LoadScreen/LoadScreen.js';
 import OSScreen from './hooks/osScreen/osScreen.js';
+import ShutdownScreen from './hooks/ShutdownScreen/ShutdownScreen.js';
 import instantiateFileStructure from './instantiateFileStructure.js';
 import instantiateFileStructureFromData from './instantiateFileStructureFromData.js';
 import instantiateFiles from './instantiateFiles.js';
@@ -16,6 +17,7 @@ function App() {
   const [loadComplete, setLoadComplete] = useState(false);
   const [osScreenComplete, setOSScreenComplete] = useState(false);
   const [fileStructure, setFileStructure] = useState(null);
+  const [shutDownScreen, setShutDownScreen] = useState(false);
 
   const createWindows = () => {
     return windows.map((item) =>
@@ -249,6 +251,11 @@ function App() {
     
   }
 
+  const handleShutdownScreen = () => {
+    setShutDownScreen(true);
+    console.log("shutting down")
+  }
+
   // EFFECTS: creates the file icons to be placed on the desktop
   const createDesktopFiles = () => {
     if (fileStructure != null) {
@@ -320,11 +327,12 @@ function App() {
     <div className="App">
       {loadComplete ? null : <LoadScreen onComplete={handleLoadComplete} />}
       {osScreenComplete ? null : <OSScreen onComplete={handleOsComplete} />}
+      {shutDownScreen ? <ShutdownScreen /> : null}
       <div style={{"zIndex" : 1}} ref={desktopElement} id="desktop" className="background-body" onDragOver={e => e.preventDefault()} onDrop={dragDropFunction}>
           {createWindows()}
           {createDesktopFiles()}
       </div>
-      <MenuBar menuItems={createMenuItems()} onIconSelect={changeActiveItemId} onFileIconMount={handleFileIconMount}/>
+      <MenuBar onShutDown={handleShutdownScreen} menuItems={createMenuItems()} onIconSelect={changeActiveItemId} onFileIconMount={handleFileIconMount}/>
     </div>
   );
 }

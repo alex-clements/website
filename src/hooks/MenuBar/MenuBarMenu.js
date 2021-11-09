@@ -44,7 +44,14 @@ export default function MenuBarMenu(props) {
 
   const testArray = ["Shut Down"];
 
-  const testing = testArray.map((i, index) => <MenuBarMenuItem key={index} item={i}/>);
+  const handleMenuItemClick = (e) => {
+    if (e == "Shut Down") {
+      props.onShutDown();
+    }
+    
+  }
+
+  const testing = testArray.map((i, index) => <MenuBarMenuItem key={index} item={i} handleMenuItemClick={handleMenuItemClick}/>);
 
   return (
         <motion.div 

@@ -37,9 +37,13 @@ export default function MenuBar(props) {
     props.onFileIconMount(topPosition, leftPosition, activeID);
   }
 
+  const handleShutDown = () => {
+    props.onShutDown();
+  }
+
   return (
         <div className="menu-bar">
-          {menuVisible ? <MenuBarMenu  onOffClick={expandMenu} menuClosing={menuClosing} menuVisible={menuVisible} /> : null}
+          {menuVisible ? <MenuBarMenu  onShutDown={handleShutDown} onOffClick={expandMenu} menuClosing={menuClosing} menuVisible={menuVisible} /> : null}
           <div className="icon-row d-flex">
             <button className={buttonActive ? "menu-button menu-button-active" : "menu-button menu-button-inactive"} onClick={expandMenu}>Menu</button>
             {props.menuItems.map((item) => 
@@ -51,6 +55,7 @@ export default function MenuBar(props) {
             onSelect={handleClick} 
             activeStatus={item["activeStatus"]}
             onFileIconMount={handleFileIconMount}
+            
             />)}
           </div>
           <MenuBarDateTime />

@@ -20,11 +20,16 @@ export default function MenuBarMenuItem(props) {
         "padding-top": "10px"
     }
 
+    const handleClick = () => {
+        props.handleMenuItemClick(props.item);
+    }
+
   return (
         <div 
         className={hoverState ? "w-auto menu-bar-menu-item menu-bar-menu-item-active" : "w-auto menu-bar-menu-item"}
         onMouseEnter={handleHover}
-        onMouseLeave={handleHover}>
+        onMouseLeave={handleHover}
+        onClick={handleClick}>
             <img style={imageStyle} src={offIcon} height="40px" width="40px" />
             <p style={textStyle}>
                 {props.item}

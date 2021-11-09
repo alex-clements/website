@@ -277,9 +277,9 @@ function App() {
     var fileId = e.dataTransfer.getData("drag-item");
     var targetId = e.target.id;
 
-    console.log("drop detected");
-    console.log(fileId);
-    console.log(targetId);
+    if (!targetId || !fileId) {
+      return;
+    }
 
     if (targetId == "desktop" || targetId == "documents") {
       var newFileStructure = instantiateFileStructureFromData(fileStructure);

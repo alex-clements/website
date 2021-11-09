@@ -8,12 +8,13 @@ export default function MenuBarDateTime(props) {
 
   useEffect(() => {
       setInterval(updateTime, 1000)
-  })
+  }, [])
 
   const updateTime = () => {
       var d = new Date()
       var minutes = d.getUTCMinutes().toString();
-      setCurrentTime(d.getHours() + ":" + (minutes.length == 1 ? "0" + minutes : minutes));
+      var hours = d.getHours() > 12 ? d.getHours() - 12 : d.getHours();
+      setCurrentTime(hours + ":" + (minutes.length == 1 ? "0" + minutes : minutes));
   }
 
   return (

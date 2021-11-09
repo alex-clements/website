@@ -1,11 +1,17 @@
 .documents-row-active {
     background-color: blue;
     color: white;
+    border: solid;
+    border-color: black;
+    border-width: 1px;
 }
 
 .documents-row-inactive {
     background-color: white;
     color: black;
+    border: solid;
+    border-color: black;
+    border-width: 1px;
 }
 
 .documents-table-heading {
@@ -13,6 +19,11 @@
     border: solid;
     border-width: 2px;
     border-color: black;
-
     border-color:#FFFFFF #000000 #000000 #FFFFFF;
+}
+
+.documents-table-row {
+    border: solid;
+    border-color: black;
+    border-width: 1px;
 }

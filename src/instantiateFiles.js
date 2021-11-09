@@ -15,8 +15,8 @@ const readMeFileData = {
     'contents' : ReadMeContents,
     'icon' : readMeFileIcon,
     'id' : 'readMeFile',
-    'initialWidth' : 200,
-    'initialHeight' : 300
+    'initialWidth' : 300,
+    'initialHeight' : 400
 }
 
 const resumeFileData = {

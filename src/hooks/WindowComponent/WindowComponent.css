@@ -70,6 +70,11 @@
   border: solid;
   border-color:#000000 #FFFFFF #FFFFFF #000000;
   border-width: 2px;
-  -ms-overflow-style: none;
   overflow-y: scroll;
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.window-component-contents-inner-border::-webkit-scrollbar {
+  display: none;
 }

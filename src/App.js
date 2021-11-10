@@ -58,7 +58,7 @@ function App() {
   useEffect(() => {
     document.addEventListener('mousedown', outsideClickListener);
     setFileStructure(instantiateFileStructure());
-    captureAnalytics('App.js');
+    captureAnalytics('landing page');
 
     return function cleanup() {
       document.removeEventListener('mousedown', outsideClickListener)

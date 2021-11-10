@@ -3,6 +3,7 @@ import { motion, useDragControls } from 'framer-motion';
 import fileIcon from './Notepad.ico';
 import './readMeFile.css';
 import ReadMeContents from './ReadMeContents.js';
+import captureAnalytics from '../../scripts/captureAnalytics.js';
 
 export default function ReadMeFile(props) {
   const [isActive, setIsActive] = useState(false);
@@ -15,6 +16,7 @@ export default function ReadMeFile(props) {
     document.addEventListener('mousedown', outsideClickListener);
     setOriginalHeight(thisElement.current.getBoundingClientRect().y);
     setOriginalWidth(thisElement.current.getBoundingClientRect().x);
+    captureAnalytics("readMe");
 
     return function cleanup() {
       document.removeEventListener('mousedown', outsideClickListener)

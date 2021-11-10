@@ -12,7 +12,7 @@ export default function ReadMeContents(props) {
 
   return (
     <div className="text-start px-1" style={styleProps}>
-      <p>Hey, welcome to the site!  It's a bit of a work in progress, but feel free to check it out anyhow :)</p>
+      <p>Hey, I'm Alex.  Welcome to my site!  It's a bit of a work in progress, but feel free to check it out anyhow :)</p>
     </div>
   )
 }

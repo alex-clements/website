@@ -1,7 +1,13 @@
 import React from 'react';
 import './ResumeFile.css';
+import captureAnalytics from '../../scripts/captureAnalytics.js';
+import { useEffect } from 'react/cjs/react.development';
 
 export default function ResumeContents(props) {
+
+  useEffect(() => {
+    captureAnalytics("resume");
+  },[])
 
   const styleProps = {
     "height": "calc(100%)",

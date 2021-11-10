@@ -1,7 +1,13 @@
 import React from 'react';
 import './Shutdown.css';
+import captureAnalytics from '../../scripts/captureAnalytics.js';
+import { useEffect } from 'react/cjs/react.development';
 
 export default function ShutdownScreen(props) {
+
+    useEffect(() => {
+        captureAnalytics("shutdown screen");
+    } ,[])
 
     return (
         <div className='shutdown-screen'>

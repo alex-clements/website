@@ -3,6 +3,7 @@ import instantiateFileStructure from '../../instantiateFileStructure.js';
 import instantiateFileStructureFromData from '../../instantiateFileStructureFromData.js';
 import DocumentsFolderRow from './DocumentsFolderRow.js';
 import CosmoPicture from '../../data/cosmo.jpeg';
+import captureAnalytics from '../../scripts/captureAnalytics.js';
 
 export default function DocumentsFolderContents(props, fileStructureProps) {
     const [fileStructure, setFileStructure] = useState(null);
@@ -10,6 +11,7 @@ export default function DocumentsFolderContents(props, fileStructureProps) {
     useEffect(() => {
         setFileStructure(instantiateFileStructureFromData(fileStructureProps));
         addContentsToCache();
+        captureAnalytics("documents folder");
     }, [])
 
     useEffect(() => {

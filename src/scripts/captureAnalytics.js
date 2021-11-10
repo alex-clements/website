@@ -4,7 +4,6 @@ export default function captureAnalytics(stringArg) {
         headers: { 
             "accepts":"application/json",
             'Content-Type': 'application/json'},
-        // mode: 'no-cors',
         body: JSON.stringify({ title: stringArg })
     };
 
@@ -14,12 +13,11 @@ export default function captureAnalytics(stringArg) {
             console.log("response not ok");
             throw new Error("ERROR");
         } else {
-            console.log("response was fine");
             return response.json();
         }
     })
     .then((responseJson) => {
-        console.log(responseJson)
+        //console.log(responseJson)
     })
     .catch((error) => {
         //pass

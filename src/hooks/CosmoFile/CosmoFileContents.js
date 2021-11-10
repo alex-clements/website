@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CosmoPicture from '../../data/cosmo.jpeg';
-import captureAnalytics from '../../scripts/logData.js';
+import captureAnalytics from '../../scripts/captureAnalytics.js';
 
 export default function CosmoFileContents(props) {
 

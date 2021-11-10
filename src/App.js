@@ -9,7 +9,7 @@ import instantiateFileStructure from './instantiateFileStructure.js';
 import instantiateFileStructureFromData from './instantiateFileStructureFromData.js';
 import instantiateFiles from './instantiateFiles.js';
 import DesktopFile from './hooks/DesktopFile/DesktopFile.js';
-import captureAnalytics from './scripts/logData.js';
+import captureAnalytics from './scripts/captureAnalytics.js';
 
 function App() {
   const [windows, setWindows] = useState([])

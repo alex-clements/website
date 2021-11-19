@@ -293,6 +293,11 @@ function App() {
       return;
     }
 
+    // TODO: refactor this
+    if (targetId == "documents" && fileId == 3) {
+      return;
+    }
+
     if (targetId == "desktop" || targetId == "documents") {
       var newFileStructure = instantiateFileStructureFromData(fileStructure);
       var allFiles = instantiateFiles();

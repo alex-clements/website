@@ -62,8 +62,8 @@ const aboutMeData = {
     'contents' : AboutMeFileContents,
     'icon' : userIcon,
     'id' : 'aboutMeFile',
-    'initialWidth' : 600,
-    'initialHeight' : 400
+    'initialWidth' : null,
+    'initialHeight' : null
 }
 
 export default function instantiateFiles() {

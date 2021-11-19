@@ -2,7 +2,7 @@ import React, {useState, useRef} from 'react';
 import {motion} from 'framer-motion';
 
 
-export default function WIndowBottomRightCorner(props) {
+export default function WindowBottomRightCorner(props) {
     const [currentY, setCurrentY] = useState(0);
     const [startingY, setStartingY] = useState(0);
     const [currentX, setCurrentX] = useState(0);
@@ -38,10 +38,10 @@ export default function WIndowBottomRightCorner(props) {
       }
 
       const handleDragStartTouch = (e) => {
-        setCurrentY(e.nativeEvent.clientY);
+        setCurrentY(e.touches[0].clientY);
         setStartingY(cornerRef.current.getBoundingClientRect().bottom);
 
-        setCurrentX(e.nativeEvent.clientX);
+        setCurrentX(e.touches[0].clientX);
         setStartingX(cornerRef.current.getBoundingClientRect().right)
       }
     

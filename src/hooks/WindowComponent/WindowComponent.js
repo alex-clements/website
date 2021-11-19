@@ -239,7 +239,8 @@ export default function WindowComponent(props) {
     return (
       {
         "zIndex": isActive || minimizing ? 100: 1,
-        "filter": isActive ? "brightness(100%) grayscale(0%) drop-shadow(3px 3px 3px black)" : "brightness(80%) grayscale(30%) drop-shadow(0 0)"
+        "filter": isActive ? "brightness(100%) grayscale(0%) drop-shadow(3px 3px 3px black)" : "brightness(80%) grayscale(30%) drop-shadow(0 0)",
+        "position" : "absolute"
       })}
 
     

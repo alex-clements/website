@@ -44,7 +44,7 @@ export default function DocumentsFolderRow(props) {
     }
 
     const styleProps = () => {
-        return isActive ? 'documents-row-active' : 'documents-row-inactive';
+        return isActive ? 'documents-table-row mx-0 documents-row-active' : 'documents-row-inactive documents-table-row mx-0';
     }
 
 
@@ -56,10 +56,10 @@ export default function DocumentsFolderRow(props) {
 
 
     return (
-        <tr className="documents-table-row" ref={thisElement} className={styleProps()} draggable="true" onDragStart={onDragStart}>
+        <tr className="documents-table-row mx-0" ref={thisElement} className={styleProps()} draggable="true" onDragStart={onDragStart}>
             <td className="px-0 py-0">
                 <div className="d-flex flex-row" onDoubleClick={handleOpenFile}>
-                    <img height="=20" width="20" className="float-left mx-1 my-1" src={props.icon} />
+                    <img height="=20" width="20" className="float-left px-1 py-1" src={props.icon} />
                     <p className="mb-0 float-left">{props.name}</p>
                 </div>
             </td>

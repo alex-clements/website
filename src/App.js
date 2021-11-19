@@ -261,7 +261,7 @@ function App() {
   // EFFECTS: creates the file icons to be placed on the desktop
   const createDesktopFiles = () => {
     if (fileStructure != null) {
-      return fileStructure['children'][1]['data'].map((item, index) => 
+      return fileStructure['children'][1]['data'].map((item) => 
       <DesktopFile 
       onOpen={addWindow} 
       fileIcon={item['icon']}
@@ -269,7 +269,7 @@ function App() {
       name={item['name']}
       fileId={item['fileId']}
       id={item['id']}
-      key={index}
+      key={item['fileId']}
       initialWidth={item['initialWidth']}
       initialHeight={item['initialHeight']}
       initialX={0}
@@ -285,6 +285,9 @@ function App() {
   const dragDropFunction = (e) => {
     var fileId = e.dataTransfer.getData("drag-item");
     var targetId = e.target.id;
+
+    console.log("file = " + fileId);
+    console.log("target = " + targetId)
 
     if (!targetId || !fileId) {
       return;
@@ -327,8 +330,8 @@ function App() {
 
   return (
     <div className="App">
-      {loadComplete ? null : <LoadScreen onComplete={handleLoadComplete} />}
-      {osScreenComplete ? null : <OSScreen onComplete={handleOsComplete} />}
+      {/* {loadComplete ? null : <LoadScreen onComplete={handleLoadComplete} />}
+      {osScreenComplete ? null : <OSScreen onComplete={handleOsComplete} />} */}
       {shutDownScreen ? <ShutdownScreen /> : null}
       <div style={{"zIndex" : 1}} ref={desktopElement} id="desktop" className="background-body" onDragOver={e => e.preventDefault()} onDrop={dragDropFunction}>
           {createWindows()}

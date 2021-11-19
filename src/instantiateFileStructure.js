@@ -15,11 +15,13 @@ export default function instantiateFileStructure() {
 
     var myMap = instantiateFiles();
 
+    desktop.addData(myMap.get(3));
     desktop.addData(myMap.get(1));
     desktop.addData(myMap.get(2));
-    desktop.addData(myMap.get(3));
+    
 
     documents.addData(myMap.get(4));
+    documents.addData(myMap.get(5));
 
     return cDrive;
 

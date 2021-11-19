@@ -8,6 +8,9 @@ import fileFolderIcon from './data/Folder.ico';
 import imageIcon from './data/Painting.ico';
 import CosmoFileContents from './hooks/CosmoFile/CosmoFileContents.js';
 
+import AboutMeFileContents from './hooks/AboutMeFile/AboutMeFileContents.js';
+import userIcon from './hooks/AboutMeFile/User.ico';
+
 const readMeFileData = {
     'fileId': 1,
     'name': 'README',
@@ -52,6 +55,17 @@ const cosmoFileData = {
     'initialHeight' : 425
 }
 
+const aboutMeData = {
+    'fileId' : 5,
+    'name' : 'ABOUT ME',
+    'dataType' : 'file',
+    'contents' : AboutMeFileContents,
+    'icon' : userIcon,
+    'id' : 'aboutMeFile',
+    'initialWidth' : 600,
+    'initialHeight' : 400
+}
+
 export default function instantiateFiles() {
     var myMap = new Map();
 
@@ -59,6 +73,7 @@ export default function instantiateFiles() {
     myMap.set(2, resumeFileData);
     myMap.set(3, fileFolder);
     myMap.set(4, cosmoFileData);
+    myMap.set(5, aboutMeData);
 
     return myMap;
 }

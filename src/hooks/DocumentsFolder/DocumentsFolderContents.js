@@ -46,7 +46,7 @@ export default function DocumentsFolderContents(props, fileStructureProps) {
         if (fileStructure != null) {
             var fs = instantiateFileStructureFromData(fileStructure);
             return ( 
-                <table className="table table-borderless mx-0">
+                <table className="table table-borderless mx-0 px-0">
                     <thead className="documents-table-heading">
                         <tr>
                             <td scope="col">

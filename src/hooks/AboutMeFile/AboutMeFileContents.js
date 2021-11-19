@@ -1,8 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './AboutMe.css';
 import seymourPic from '../../data/SeymourPic.jpg';
 import captureAnalytics from '../../scripts/captureAnalytics.js';
-import { useEffect } from 'react/cjs/react.development';
 
 export default function AboutMeFileContents(props) {
 

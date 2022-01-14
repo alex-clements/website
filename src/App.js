@@ -335,8 +335,8 @@ function App() {
 
   return (
     <div className="App">
-      {loadComplete ? null : <LoadScreen onComplete={handleLoadComplete} />}
-      {osScreenComplete ? null : <OSScreen onComplete={handleOsComplete} />}
+      {/* {loadComplete ? null : <LoadScreen onComplete={handleLoadComplete} />} */}
+      {/* {osScreenComplete ? null : <OSScreen onComplete={handleOsComplete} />} */}
       {shutDownScreen ? <ShutdownScreen /> : null}
       <div style={{"zIndex" : 1}} ref={desktopElement} id="desktop" className="background-body" onDragOver={e => e.preventDefault()} onDrop={dragDropFunction}>
           {createWindows()}

@@ -7,6 +7,8 @@ import resumeFileIcon from './hooks/resumeFile/WordPad document.ico';
 import fileFolderIcon from './data/Folder.ico';
 import imageIcon from './data/Painting.ico';
 import CosmoFileContents from './hooks/CosmoFile/CosmoFileContents.js';
+import SpaceInvadersContents from './hooks/SpaceInvaders/SpaceInvadersContents.js';
+import SpaceInvadersIcon from './hooks/SpaceInvaders/Earth.ico';
 
 import AboutMeFileContents from './hooks/AboutMeFile/AboutMeFileContents.js';
 import userIcon from './hooks/AboutMeFile/User.ico';
@@ -66,6 +68,17 @@ const aboutMeData = {
     'initialHeight' : null
 }
 
+const spaceInvadersData = {
+    'fileId' : 6,
+    'name' : 'SPACE INVADERS',
+    'dataType' : 'file',
+    'contents' : SpaceInvadersContents,
+    'icon' : SpaceInvadersIcon,
+    'id' : 'spaceInvadersFile',
+    'initialWidth' : null,
+    'initialHeight' : null
+}
+
 export default function instantiateFiles() {
     var myMap = new Map();
 
@@ -74,6 +87,7 @@ export default function instantiateFiles() {
     myMap.set(3, fileFolder);
     myMap.set(4, cosmoFileData);
     myMap.set(5, aboutMeData);
+    myMap.set(6, spaceInvadersData);
 
     return myMap;
 }

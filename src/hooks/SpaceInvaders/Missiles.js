@@ -7,8 +7,10 @@ export default class Missiles {
     }
 
     addMissile(x, y) {
-        var missile = new Missile(x, y);
+        var missile = new Missile(x, y, this.nextId);
         this.missiles.push(missile);
+        this.incrementId();
+        return missile;
     }
 
     tick() {
@@ -21,12 +23,16 @@ export default class Missiles {
         return this.missiles;
     }
 
-    getId() {
-        return "space-invaders-missile-" + this.nextId;
+    getNextId() {
+        return this.nextId;
     }
 
     incrementId() {
         this.nextId = this.nextId + 1;
+    }
+
+    removeMissile(i) {
+        this.missiles.splice(i, 1);
     }
 
 }

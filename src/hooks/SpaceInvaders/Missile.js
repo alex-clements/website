@@ -1,7 +1,8 @@
 export default class Missile {
-    constructor(x, y) {
+    constructor(x, y, id) {
         this.x = x;
         this.y = y;
+        this.id = id;
     }
 
     tick() {
@@ -14,5 +15,9 @@ export default class Missile {
 
     getY() {
         return this.y;
+    }
+
+    getId() {
+        return "space-invaders-missile-" + this.id;
     }
 }

@@ -2,79 +2,80 @@ import React, {useEffect, useState, useRef} from 'react';
 import captureAnalytics from '../../scripts/captureAnalytics.js';
 import './SpaceInvaders.css';
 import Tank from './Tank.js';
-import Missile from './Missile.js';
+import Missiles from './Missiles.js';
 
 export default function SpaceInvadersContents(props) {
-    const [tankX, setTankX] = useState(10);
-    const [missiles, setMissiles] = useState([]);
+    const left = 10;
+    const bottom = 10;
+    var tankClass = new Tank();
+    var missiles = new Missiles();
 
-    /**
-     * Add event listeners
-     */
     useEffect(() => {
         captureAnalytics("space invaders");
-        setInterval(moveMissiles, 100);
-
-        return (() => {
-        })
+        initGame();
     }, []);
 
-    /**
-     * Key event handler for game
-     * @param {React.KeyboardEvent} e 
-     */
-    const handleKeyDown = (e) => {
-        if (e.code == "ArrowRight" || e.code == "ArrowLeft") {
-            moveTank(e);
-        } else if (e.code === "Space") {
-            shootMissile();
+    const initGame = () => {
+        setInterval(tick, 10);
+        var gameMain = document.getElementById("space-invaders-game");
+        var tank = document.createElement("div");
+        tank.className="space-invaders-tank"
+        tank.id = "space-invaders-tank";
+        gameMain.appendChild(tank);
+        window.addEventListener('keydown', handleKeyDown);
+    }
+
+    const handleAddMissile = () => {
+        var gameMain = document.getElementById("space-invaders-game");
+        var newMissile = document.createElement('div');
+        newMissile.className = 'space-invaders-missile';
+        newMissile.id = missiles.getId();
+        missiles.incrementId();
+        missiles.addMissile(tankClass.getPosition() + 10, 20);
+        newMissile.style.bottom = "10px";
+        newMissile.style.left = tankClass.getPosition() + "px";
+        gameMain.appendChild(newMissile);
+    }
+
+    const tick = () => {
+        tankClass.tick();
+        missiles.tick();
+        updateTankPosition();
+        updateMissilesPosition();
+    }
+
+    const updateTankPosition = () => {
+        var position = tankClass.getPosition();
+        var transform = "translate3d(" + position + "px, 0, 0)"
+        var tank = document.getElementById("space-invaders-tank");
+        tank.style.transform = transform;
+    }
+
+    const updateMissilesPosition = () => {
+        var allMissiles = missiles.getMissiles();
+        for (var i = 0; i<allMissiles.length; i++) {
+            var missile = allMissiles[i];
+            missile.tick();
+            var x = missile.getX();
+            var y = missile.getY() * -1;
+            var screenMissile = document.getElementById("space-invaders-missile-" + i);
+            screenMissile.style.transform = "translate3d(0," + y + "px, 0)";
         }
     }
 
-    /**
-     * Adds a new missile to the list of missiles from the tank's current x position
-     */
-    const shootMissile = () => {
-        const missileX = tankX;
-        const missileY = 20;
-        const newMissiles = missiles;
-        newMissiles.push([missileX, missileY]);
-        setMissiles(newMissiles);
-        console.log("adding missile")
-    }
-
-    /**
-     * Moves the missiles
-     * @param {} e 
-     */
-    const moveMissiles = () => {
-        console.log(missiles);
-        setMissiles(oldMissiles => {
-            const newMissiles = [];
-            const existingMissiles = oldMissiles;
-            for (var i=0; i < existingMissiles.length; i++) {
-                var newMissile = existingMissiles[i];
-                newMissile[1] = newMissile[1] + 5;
-                newMissiles.push(newMissile);
-            }
-            return newMissiles
-        })
-    }
-
-    /**
-     * Function to move tank left or right
-     * @param {*} e 
-     */
-    const moveTank = (e) => {
-        var newTankX = tankX;
-        newTankX = e.code === "ArrowRight" ? tankX + 20 : tankX - 20;
-        setTankX(newTankX);
+    const handleKeyDown = (e) => {
+        console.log(e.code);
+        if (e.code === "ArrowRight") {
+            tankClass.setDirection(1);
+        } else if (e.code === "ArrowLeft") {
+            tankClass.setDirection(-1);
+        } else if (e.code === "Space") {
+            handleAddMissile();
+        }
     }
 
     return (
-    <div tabIndex="0" onKeyDown={handleKeyDown} className="space-invaders-main">
-        <Tank tankX={tankX} />
-        {missiles.map((item, index) => <Missile key={index} position={item} />)}
+    <div id="space-invaders-game" tabIndex="0" className="space-invaders-main">
     </div>
     )
 }

@@ -3,6 +3,8 @@
     width: 100%;
     height: 100%;
     outline: none;
+    overflow: hidden;
+    position: relative;
 }
 
 .space-invaders-tank {
@@ -10,6 +12,8 @@
     background-color: red;
     width: 20px;
     height: 20px;
+    bottom: 0px;
+    z-index: 0;
 }
 
 .space-invaders-missile {

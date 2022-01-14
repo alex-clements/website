@@ -1,29 +1,18 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import {motion} from 'framer-motion';
-
-export default function Missile(props) {
-    const [missileX, setMissileX] = useState(props.position[0]);
-    const [missileY, setMissileY] = useState(props.position[1]);
-
-    useEffect(() => {
-        setMissileX(props.position[0]);
-        setMissileY(props.position[1]);
-    }, [props.position]);
-
-    const variants = {
-        left: missileX,
-        bottom: missileY
+export default class Missile {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
     }
 
-    const initial = {
-        left: missileX,
-        bottom: 20
+    tick() {
+        this.y = this.y + 1;
     }
 
-    return (
-        <motion.div className="space-invaders-missile" initial={initial} animate={variants} transition={{type: "linear", "duration": 0.1}}>
+    getX() {
+        return this.x;
+    }
 
-        </motion.div>
-    )
+    getY() {
+        return this.y;
+    }
 }

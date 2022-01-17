@@ -4,4 +4,12 @@ export default class SpaceInvadersUI {
         this.missiles = missiles;
         this.minions = minions;
     }
+
+    initGame = () => {
+        var gameMain = document.getElementById("space-invaders-game");
+        var tankElement = document.createElement("div");
+        tankElement.className="space-invaders-tank"
+        tankElement.id = "space-invaders-tank";
+        gameMain.appendChild(tankElement);
+    }
 }

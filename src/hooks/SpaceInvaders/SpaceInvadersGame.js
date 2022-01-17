@@ -15,12 +15,7 @@ export default class SpaceInvadersGame {
     }
 
     initGame = () => {
-        var gameMain = document.getElementById("space-invaders-game");
-        var tankElement = document.createElement("div");
-        tankElement.className="space-invaders-tank"
-        tankElement.id = "space-invaders-tank";
-        gameMain.appendChild(tankElement);
-        
+        this.ui.initGame();
     }
 
     stopGame = () => {
@@ -96,6 +91,4 @@ export default class SpaceInvadersGame {
             this.handleAddMissile();
         }
     }
-
-
 }

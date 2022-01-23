@@ -4,9 +4,10 @@ import Missile from './Missile.js';
  * Class for handling all missiles in the game.
  */
 export default class Missiles {
-    constructor() {
+    constructor(spaceInvadersGame) {
         this.missiles = [];
         this.nextId = 0;
+        this.spaceInvadersGame = spaceInvadersGame;
     }
 
     /**
@@ -29,6 +30,7 @@ export default class Missiles {
         for (var i=0; i<this.missiles.length; i++) {
             this.missiles[i].tick();
         }
+        this.checkMissilesOffScreen();
     }
 
     /**
@@ -60,6 +62,23 @@ export default class Missiles {
      */
     removeMissile(i) {
         this.missiles.splice(i, 1);
+    }
+
+    /**
+     * Updates the position of the missiles on the screen.
+     */
+    checkMissilesOffScreen = () => {
+        var missilesToRemove = []
+        for (var i = 0; i<this.missiles.length; i++) {
+            var missile = this.missiles[i];
+            if (missile.getY() > this.spaceInvadersGame.getWindowHeight()) {
+                missilesToRemove.push(i);
+            }
+        }
+        missilesToRemove.forEach((i) => {
+            this.spaceInvadersGame.removeMissile(this.missiles[i]);
+            this.removeMissile(i);
+        })
     }
 
 }

@@ -5,6 +5,9 @@ export default class SpaceInvadersUI {
         this.minions = minions;
     }
 
+    /**
+     * Starts the space invaders game.
+     */
     initGame = () => {
         var gameMain = document.getElementById("space-invaders-game");
         var tankElement = document.createElement("div");

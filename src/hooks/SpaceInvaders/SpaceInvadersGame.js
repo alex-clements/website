@@ -14,26 +14,43 @@ export default class SpaceInvadersGame {
         this.initGame();
     }
 
+    /**
+     * Starts the game.
+     */
     initGame = () => {
         this.ui.initGame();
     }
 
+    /**
+     * Removes the event listeners from the window and clears the setInterval timer.
+     */
     stopGame = () => {
         clearInterval(this.intervalToClear);
         window.removeEventListener('keydown', this.handleKeyDown);
         console.log("interval cleared");
     }
 
+    /**
+     * Returns the height of the game window.
+     * @returns height of the window.
+     */
     getWindowHeight = () => {
         var myWindow = document.getElementById("space-invaders-game");
         return myWindow.clientHeight;
     }
 
+    /**
+     * Returns the width of the game window.
+     * @returns width of the window
+     */
     getWindowWidth = () => {
         var myWindow = document.getElementById("space-invaders-game");
         return myWindow.clientWidth;
     }
 
+    /**
+     * Function to add new missile to the screen at the tank's location
+     */
     handleAddMissile = () => {
         var gameMain = document.getElementById("space-invaders-game");
         var newMissile = document.createElement('div');
@@ -45,11 +62,17 @@ export default class SpaceInvadersGame {
         gameMain.appendChild(newMissile);
     }
 
+    /**
+     * Function to update the screen ui
+     */
     tick = () => {
         this.updateTankPosition();
         this.updateMissilesPosition();
     }
 
+    /**
+     * Updates the position of the tank on the screen.
+     */
     updateTankPosition = () => {
         var position = this.tank.getPosition();
         var direction = this.tank.getDirection();
@@ -61,6 +84,9 @@ export default class SpaceInvadersGame {
         } 
     }
 
+    /**
+     * Updates the position of the missiles on the screen.
+     */
     updateMissilesPosition = () => {
         this.missiles.tick();
         var allMissiles = this.missiles.getMissiles();
@@ -81,6 +107,10 @@ export default class SpaceInvadersGame {
         })
     }
 
+    /**
+     * Handles input from the keyboard
+     * @param {React.KeyboardEvent} e 
+     */
     handleKeyDown = (e) => {
         console.log(e.code);
         if (e.code === "ArrowRight") {

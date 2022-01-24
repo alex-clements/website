@@ -33,10 +33,16 @@ export default class SpaceInvadersGame {
         this.clearEventListener();
     }
 
+    /**
+     * Clears the keydown event listener
+     */
     clearEventListener = () => {
         window.removeEventListener('keydown', this.handleKeyDown);
     }
 
+    /**
+     * clears the interval timer and initiates the gameOver function on the ui class
+     */
     gameOver = () => {
         clearInterval(this.intervalToClear);
         this.ui.gameOver();
@@ -105,10 +111,18 @@ export default class SpaceInvadersGame {
         }
     }
 
+    /**
+     * Adds a minion to the UI
+     * @param {Minion} minion 
+     */
     addMinion = (minion) => {
         this.ui.addMinion(minion);
     }
 
+    /**
+     * Removes a minion from the minions class and increases the score in the score panel
+     * @param {Minion} minion 
+     */
     removeMinion = (minion) => {
         this.minions.removeMinion(minion);
         this.scorePanel.increaseScore();

@@ -42,6 +42,9 @@ export default class SpaceInvadersUI {
         this.updateMinionPositions();
     }
 
+    /**
+     * Displays the Game Over text.
+     */
     gameOver = () => {
         var gameMain = document.getElementById("space-invaders-game");
         var gameOver = document.createElement('div');
@@ -144,6 +147,10 @@ export default class SpaceInvadersUI {
         gameMain.append(newMinion);
     }
 
+    /**
+     * Removes a minion from the UI.
+     * @param {Minion} minion 
+     */
     removeMinion = (minion) => {
         var gameMain = document.getElementById("space-invaders-game");
         var minionElement = document.getElementById(minion.getId());
@@ -151,6 +158,9 @@ export default class SpaceInvadersUI {
         this.updateScorePanel();
     }
 
+    /**
+     * Updates the score panel UI component.
+     */
     updateScorePanel = () => {
         var panelElement = document.getElementById("space-invaders-score-panel-text");
         var score = this.scorePanel.getScore();

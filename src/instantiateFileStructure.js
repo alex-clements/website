@@ -9,7 +9,7 @@ export default function instantiateFileStructure() {
     documents.setName("documents");
     var desktop = new fileStructure();
     desktop.setName("desktop");
-
+    
     cDrive.addChildNoParent(documents);
     cDrive.addChildNoParent(desktop);
 
@@ -19,10 +19,10 @@ export default function instantiateFileStructure() {
     desktop.addData(myMap.get(1));
     desktop.addData(myMap.get(2));
     
-
     documents.addData(myMap.get(4));
     documents.addData(myMap.get(5));
     documents.addData(myMap.get(6));
+    documents.addData(myMap.get(7));
 
     return cDrive;
 

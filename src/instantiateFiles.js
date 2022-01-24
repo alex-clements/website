@@ -8,6 +8,7 @@ import imageIcon from './data/Painting.ico';
 import CosmoFileContents from './hooks/CosmoFile/CosmoFileContents.js';
 import SpaceInvadersContents from './hooks/SpaceInvaders/SpaceInvadersContents.js';
 import SpaceInvadersIcon from './hooks/SpaceInvaders/Earth.ico';
+import SpacestagramContents from './hooks/Spacestagram/SpacestagramContents.js';
 
 import AboutMeFileContents from './hooks/AboutMeFile/AboutMeFileContents.js';
 import userIcon from './hooks/AboutMeFile/User.ico';
@@ -78,6 +79,17 @@ const spaceInvadersData = {
     'initialHeight' : null
 }
 
+const spacestagramData = {
+    'fileId' : 7,
+    'name' : 'SPACESTAGRAM',
+    'dataType' : 'file',
+    'contents' : SpacestagramContents,
+    'icon' : SpaceInvadersIcon,
+    'id' : 'spacestagramFile',
+    'initialWidth' : null,
+    'initialHeight' : null
+}
+
 export default function instantiateFiles() {
     var myMap = new Map();
 
@@ -87,6 +99,7 @@ export default function instantiateFiles() {
     myMap.set(4, cosmoFileData);
     myMap.set(5, aboutMeData);
     myMap.set(6, spaceInvadersData);
+    myMap.set(7, spacestagramData);
 
     return myMap;
 }

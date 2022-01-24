@@ -11,3 +11,6 @@ I used the following libraries / frameworks for the frontend:
 ## Functionality
 
 I've built in abilities to open files on the desktop and in the documents folder.  Files can also be dragged around and moved from the desktop to the documents folder and vice-versa.  All open windows can be resized, maximized, minimized and closed. Clicking the icon in the task bar at the bottom of the screen will open / un-minimize the corresponding window.  
+
+## Demo
+![](websiteDemo.gif)

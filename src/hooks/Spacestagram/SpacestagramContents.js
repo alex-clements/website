@@ -4,7 +4,7 @@ import captureAnalytics from '../../scripts/captureAnalytics.js';
 export default function ReadMeContents(props) {
 
   useEffect(() => {
-    captureAnalytics("space invaders");
+    captureAnalytics("spacestagram");
 }, []);
 
   const styleProps = {

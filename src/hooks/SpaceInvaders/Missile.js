@@ -41,26 +41,50 @@ export default class Missile {
         return "space-invaders-missile-" + this.id;
     }
 
+    /**
+     * Returns the width of the missile.
+     * @returns the width of the missile.
+     */
     getWidth = () => {
         return this.width;
     }
 
+    /**
+     * Returns the height of the missile.
+     * @returns the height of the missile.
+     */
     getHeight = () => {
         return this.height;
     }
 
+    /**
+     * Returns the y-coordinate of the top of the missile.
+     * @returns the y-coordinate of the top of the missile.
+     */
     getTop = () => {
         return this.y
     }
 
+    /**
+     * Returns the y-coordinate of the bottom of the missile.
+     * @returns the y-coordinate of the bottom of the missile.
+     */
     getBottom = () => {
         return this.y + this.height;
     }
 
+    /**
+     * Returns the x-coordinate of the left of the missile.
+     * @returns the x-coordinate of the left of the missile.
+     */
     getLeft = () => {
         return this.x;
     }
 
+    /**
+     * Returns the x-coordinate of the right of the missile.
+     * @returns the x-coordinate of the right of the missile.
+     */
     getRight = () => {
         return this.x + this.width;
     }

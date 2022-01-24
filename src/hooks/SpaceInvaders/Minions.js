@@ -33,6 +33,10 @@ export default class Minions {
         return this.minions;
     }
 
+    /**
+     * Checks to see if new minions need to be added to the screen. Determines the direction
+     * of movement for the minions and updates the minions positions.
+     */
     tick = () => {
         this.checkAddNewMinions();
         var dir = this.determineDir();
@@ -41,6 +45,10 @@ export default class Minions {
         }
     }
 
+    /**
+     * Returns the direction of travel for the minions.
+     * @returns the direction of travel for the minions.
+     */
     determineDir = () => {
         var dir;
         if (this.movementCounter < 100) {
@@ -62,6 +70,9 @@ export default class Minions {
         return dir;
     }
 
+    /**
+     * Checks the clock counter to determine if new minions need to be added to the screen.
+     */
     checkAddNewMinions = () => {
         if (this.clockCounter == 0) {
             this.addNewMinionRow();
@@ -72,6 +83,9 @@ export default class Minions {
         }
     }
 
+    /**
+     * Adds a new row of minions to the screen.
+     */
     addNewMinionRow = () => {
         var spacing = this.spaceInvadersGame.getWindowWidth() / 5;
         for (var i=0; i<5; i++) {
@@ -82,6 +96,10 @@ export default class Minions {
         }
     }
 
+    /**
+     * Removes a minion from the screen.
+     * @param {Minion} minion 
+     */
     removeMinion = (minion) => {
         var minionsToRemove = [];
 

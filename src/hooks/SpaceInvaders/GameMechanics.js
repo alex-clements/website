@@ -5,6 +5,10 @@ export default class GameMechanics {
         this.missiles = missiles;
     }
 
+    /**
+     * Checks all the missiles and minions to determine if there was a collision between any of them.
+     * Removes the minion and corresponding missile in the event of a collision.
+     */
     checkCollisions = () => {
         var minions = this.minions.getMinions();
         var missiles = this.missiles.getMissiles();
@@ -54,6 +58,9 @@ export default class GameMechanics {
         })
     }
 
+    /**
+     * Checks all the minions to see if they have reached the ground. Ends the game if they have.
+     */
     checkGameOver = () => {
         var minions = this.minions.getMinions();
         for (var i=0; i < minions.length; i++) {

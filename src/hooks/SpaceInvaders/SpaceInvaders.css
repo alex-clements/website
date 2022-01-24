@@ -47,7 +47,7 @@
 }
 
 .space-invaders-game-over-subtext {
-    /* color: greenyellow; */
+    color: greenyellow;
     font-family: 'VT323', monospace;
     font-size: 50px;
     -webkit-animation-name: playagaintext;

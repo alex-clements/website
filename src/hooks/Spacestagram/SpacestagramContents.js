@@ -1,6 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import captureAnalytics from '../../scripts/captureAnalytics.js';
 
 export default function ReadMeContents(props) {
+
+  useEffect(() => {
+    captureAnalytics("space invaders");
+}, []);
 
   const styleProps = {
     "height": "100%",

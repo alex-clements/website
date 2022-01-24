@@ -2,15 +2,11 @@ import Tank from './Tank.js';
 import Missiles from './Missiles.js';
 import SpaceInvadersUI from './SpaceInvadersUI.js';
 import Minions from './Minions.js';
+import GameMechanics from './GameMechanics.js';
+import ScorePanel from './ScorePanel.js';
 
 export default class SpaceInvadersGame {
     constructor() {
-        this.intervalToClear = setInterval(this.tick, 8);
-        this.listenerToClear = window.addEventListener('keydown', this.handleKeyDown);
-        this.tank = new Tank(this);
-        this.missiles = new Missiles(this);
-        this.minions = new Minions(this);
-        this.ui = new SpaceInvadersUI(this.tank, this.missiles, this.minions);
         this.initGame();
     }
 
@@ -18,6 +14,14 @@ export default class SpaceInvadersGame {
      * Starts the game.
      */
     initGame = () => {
+        this.intervalToClear = setInterval(this.tick, 8);
+        this.listenerToClear = window.addEventListener('keydown', this.handleKeyDown);
+        this.tank = new Tank(this);
+        this.missiles = new Missiles(this);
+        this.minions = new Minions(this);
+        this.scorePanel = new ScorePanel();
+        this.ui = new SpaceInvadersUI(this.tank, this.missiles, this.minions, this.scorePanel);
+        this.gameMechanics = new GameMechanics(this, this.minions, this.missiles);
         this.ui.initGame();
     }
 
@@ -26,8 +30,16 @@ export default class SpaceInvadersGame {
      */
     stopGame = () => {
         clearInterval(this.intervalToClear);
+        this.clearEventListener();
+    }
+
+    clearEventListener = () => {
         window.removeEventListener('keydown', this.handleKeyDown);
-        console.log("interval cleared");
+    }
+
+    gameOver = () => {
+        clearInterval(this.intervalToClear);
+        this.ui.gameOver();
     }
 
     /**
@@ -52,7 +64,7 @@ export default class SpaceInvadersGame {
      * Function to add new missile to the screen at the tank's location
      */
     handleAddMissile = () => {
-        var missile = this.missiles.addMissile(this.tank.getPosition(), 20);
+        var missile = this.missiles.addMissile(this.tank.getPosition() + 48, 50);
         this.ui.addMissile(missile);
     }
 
@@ -70,6 +82,9 @@ export default class SpaceInvadersGame {
     tick = () => {
         this.tank.tick();
         this.missiles.tick();
+        this.minions.tick();
+        this.gameMechanics.checkCollisions();
+        this.gameMechanics.checkGameOver();
         this.ui.tick();
     }
 
@@ -78,13 +93,25 @@ export default class SpaceInvadersGame {
      * @param {React.KeyboardEvent} e 
      */
     handleKeyDown = (e) => {
-        console.log(e.code);
         if (e.code === "ArrowRight") {
             this.tank.setDirection(1);
         } else if (e.code === "ArrowLeft") {
             this.tank.setDirection(-1);
         } else if (e.code === "Space") {
             this.handleAddMissile();
+        } else if (e.code === "KeyR") {
+            this.stopGame();
+            this.initGame();
         }
+    }
+
+    addMinion = (minion) => {
+        this.ui.addMinion(minion);
+    }
+
+    removeMinion = (minion) => {
+        this.minions.removeMinion(minion);
+        this.scorePanel.increaseScore();
+        this.ui.removeMinion(minion);
     }
 }

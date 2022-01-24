@@ -255,7 +255,6 @@ function App() {
 
   const handleShutdownScreen = () => {
     setShutDownScreen(true);
-    console.log("shutting down")
   }
 
   // EFFECTS: creates the file icons to be placed on the desktop
@@ -285,9 +284,6 @@ function App() {
   const dragDropFunction = (e) => {
     var fileId = e.dataTransfer.getData("drag-item");
     var targetId = e.target.id;
-
-    console.log("file = " + fileId);
-    console.log("target = " + targetId)
 
     if (!targetId || !fileId) {
       return;

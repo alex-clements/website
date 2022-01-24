@@ -6,13 +6,15 @@ export default class Missile {
         this.x = x;
         this.y = y;
         this.id = id;
+        this.width = 5;
+        this.height = 20;
     }
 
     /**
      * Updates the position of the missile on the clock cycle.
      */
     tick() {
-        this.y = this.y + 1;
+        this.y = this.y + 3;
     }
 
     /**
@@ -37,5 +39,29 @@ export default class Missile {
      */
     getId() {
         return "space-invaders-missile-" + this.id;
+    }
+
+    getWidth = () => {
+        return this.width;
+    }
+
+    getHeight = () => {
+        return this.height;
+    }
+
+    getTop = () => {
+        return this.y
+    }
+
+    getBottom = () => {
+        return this.y + this.height;
+    }
+
+    getLeft = () => {
+        return this.x;
+    }
+
+    getRight = () => {
+        return this.x + this.width;
     }
 }

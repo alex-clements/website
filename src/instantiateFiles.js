@@ -1,4 +1,3 @@
-import fileStructure from './fileStructureClass.js';
 import ReadMeContents from './hooks/readMeFile/ReadMeContents.js';
 import ResumeContents from './hooks/resumeFile/ResumeContents.js';
 import DocumentsFolderContents from './hooks/DocumentsFolder/DocumentsFolderContents.js';

@@ -1,6 +1,6 @@
 export default class Tank {
     constructor(spaceInvadersGame) {
-        this.direction = 1;
+        this.direction = 0;
         this.positionX = 0;
         this.spaceInvadersGame = spaceInvadersGame;
     }
@@ -36,8 +36,8 @@ export default class Tank {
         var windowWidth = this.spaceInvadersGame.getWindowWidth();
         var position = this.getPosition();
         var direction = this.getDirection();
-        if ((position > 0 && direction === -1) || (position < windowWidth - 20 && direction === 1)) {
-            this.positionX = this.positionX + this.direction;
+        if ((position > 0 && direction === -1) || (position < windowWidth - 100 && direction === 1)) {
+            this.positionX = this.positionX + 3 * this.direction;
         } 
     }
 }

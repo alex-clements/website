@@ -255,7 +255,6 @@ function App() {
 
   const handleShutdownScreen = () => {
     setShutDownScreen(true);
-    console.log("shutting down")
   }
 
   // EFFECTS: creates the file icons to be placed on the desktop
@@ -285,9 +284,6 @@ function App() {
   const dragDropFunction = (e) => {
     var fileId = e.dataTransfer.getData("drag-item");
     var targetId = e.target.id;
-
-    console.log("file = " + fileId);
-    console.log("target = " + targetId)
 
     if (!targetId || !fileId) {
       return;
@@ -335,8 +331,8 @@ function App() {
 
   return (
     <div className="App">
-      {loadComplete ? null : <LoadScreen onComplete={handleLoadComplete} />}
-      {osScreenComplete ? null : <OSScreen onComplete={handleOsComplete} />}
+      {/* {loadComplete ? null : <LoadScreen onComplete={handleLoadComplete} />} */}
+      {/* {osScreenComplete ? null : <OSScreen onComplete={handleOsComplete} />} */}
       {shutDownScreen ? <ShutdownScreen /> : null}
       <div style={{"zIndex" : 1}} ref={desktopElement} id="desktop" className="background-body" onDragOver={e => e.preventDefault()} onDrop={dragDropFunction}>
           {createWindows()}

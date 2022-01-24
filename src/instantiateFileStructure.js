@@ -22,6 +22,7 @@ export default function instantiateFileStructure() {
 
     documents.addData(myMap.get(4));
     documents.addData(myMap.get(5));
+    documents.addData(myMap.get(6));
 
     return cDrive;
 

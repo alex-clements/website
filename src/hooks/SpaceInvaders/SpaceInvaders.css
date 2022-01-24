@@ -1,0 +1,85 @@
+.space-invaders-main {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+}
+
+.space-invaders-tank {
+    position: absolute;
+    background: url(cannon.png) 0px 0px;
+    background-size: cover;
+    width: 100px;
+    height: 50px;
+    bottom: 1px;
+    z-index: 1;
+}
+
+.space-invaders-missile {
+    position: absolute;
+    background-color: greenyellow;
+}
+
+.space-invaders-minion {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background: url(minion.png) -4px 8px;
+    background-size: cover;
+    z-index: 0;
+    /* border: solid;
+    border-width: 1px;
+    border-color: red; */
+}
+
+.space-invaders-game-over {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.space-invaders-game-over-text {
+    color: greenyellow;
+    font-family: 'VT323', monospace;
+    font-size: 200px;
+}
+
+.space-invaders-game-over-subtext {
+    /* color: greenyellow; */
+    font-family: 'VT323', monospace;
+    font-size: 50px;
+    animation-name: playagaintext;
+    animation-duration: 800ms;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+.space-invaders-score-panel {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    top: 0px;
+    text-align: right;
+}
+
+.space-invaders-score-panel-text {
+    color: greenyellow;
+    font-family: 'VT323', monospace;
+    font-size: 50px;
+    position: relative;
+    right: 20px;
+
+}
+
+@keyframes playagaintext {
+    from {
+        color: black;
+        opacity: 0%;
+    }
+    to {
+        color: greenyellow;
+        opacity: 100%
+    }
+}

@@ -15,7 +15,7 @@ export default function ResumeContents(props) {
   }
 
   return (
-    <div className="text-start resume-contents-container font-global px-5 pt-2" style={styleProps}>
+    <div className="text-start resume-contents-container font-global px-md-5 px-lg-5 px-xl-5 px-sm-2 px-2 pt-2" style={styleProps}>
       <h1 className="text-center">Resume</h1>
       <br />
       <h3>Education</h3>
@@ -34,7 +34,7 @@ export default function ResumeContents(props) {
       <br />
       <h3>Employment History</h3>
 
-      <h6>Copperleaf Technologies, Vancouver, British Columbia</h6>
+      <h4>Copperleaf Technologies, Vancouver, British Columbia</h4>
       <div className="d-flex justify-content-between">
       <p className="mb-0">Senior Consultant</p>
       <p className="mb-0">Jan 2021 - Aug 2021</p>
@@ -57,7 +57,7 @@ export default function ResumeContents(props) {
         <li>Performed data migration services to transfer data from existing client software systems to the Copperleaf flagship software system</li>
       </ul>
 
-      <h6>Pengrowth Energy, Calgary, Alberta</h6>
+      <h4>Pengrowth Energy, Calgary, Alberta</h4>
       <div className="d-flex justify-content-between">
       <p>Engineering Intern</p>
       <p>Jan 2015 - Aug 2015</p>
@@ -72,7 +72,7 @@ export default function ResumeContents(props) {
         <li>Performed a look-back study on the economic viability of plunger lift installations for a gas field</li>
       </ul>
 
-      <h6>Red River Oil Inc., Calgary, Alberta</h6>
+      <h4>Red River Oil Inc., Calgary, Alberta</h4>
       <div className="d-flex justify-content-between">
       <p>Engineering Student</p>
       <p>May 2013 - Dec 2013</p>

@@ -15,7 +15,7 @@ export default function ResumeContents(props) {
   }
 
   return (
-    <div className="text-start resume-contents-container px-1" style={styleProps}>
+    <div className="text-start resume-contents-container font-global px-5 pt-2" style={styleProps}>
       <h1 className="text-center">Resume</h1>
       <br />
       <h3>Education</h3>

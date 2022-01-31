@@ -15,7 +15,7 @@ export default function AboutMeFileContents(props) {
     }
 
     return (
-        <div className="about-me-main px-1 text-start">
+        <div className="about-me-main px-5 text-start font-global">
             <h3 className="text-center">About Me</h3>
             <p className="">Hey, I'm Alex. I'm currently a student in Computer Science at the University of British Columbia.</p>
             <p className="">When I'm not working on projects or assignments, I like to go mountain biking over on Vancouver's North Shore and skiing - either up in Whistler

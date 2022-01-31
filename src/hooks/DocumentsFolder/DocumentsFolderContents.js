@@ -51,7 +51,7 @@ export default function DocumentsFolderContents(props, fileStructureProps) {
                         <tr>
                             <td scope="col">
                                 <div className="d-flex flex-row">
-                                <p className="mb-0">Filename</p>
+                                <p className="mb-0 font-global">Filename</p>
                                 </div>
                             </td>
                         </tr>

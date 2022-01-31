@@ -44,7 +44,7 @@ export default function DocumentsFolderRow(props) {
     }
 
     const styleProps = () => {
-        return isActive ? 'documents-table-row mx-0 documents-row-active' : 'documents-row-inactive documents-table-row mx-0';
+        return isActive ? 'documents-table-row mx-0 documents-row-active documents-text' : 'documents-row-inactive documents-table-row mx-0 documents-text';
     }
 
 

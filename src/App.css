@@ -40,6 +40,11 @@
   font-size: 60px;
 }
 
+.font-global {
+  font-family: 'w95fa';
+  font-size: 20px;
+}
+
 .font-secondary {
   font-family: 'Montserrat', sans-serif;
   font-size: 50px;
@@ -103,4 +108,9 @@
 
 .highlightedNavBarItem {
   text-shadow: 0px 2px 20px #fff  /* inner white */
+}
+
+@font-face {
+  font-family: 'W95FA';
+  src: local('W95FA'), url(w95fa.woff) format('woff');
 }

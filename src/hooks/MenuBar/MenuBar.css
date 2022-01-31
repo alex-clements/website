@@ -12,6 +12,7 @@
 }
 
 .menu-button {
+  font-family: 'w95fa';
   float: left;
   height: 30px;
   left: 5px;
@@ -52,6 +53,7 @@
 }
 
 .menu-bar-menu-item {
+  font-family: 'w95fa';
   position: relative;
   border-top: 0px;
   border-bottom: 1px;
@@ -86,6 +88,7 @@
 
 .menu-bar-font {
   font-size: 20px;
+  font-family: 'w95fa';
   -webkit-user-select: none; /* Safari */        
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
@@ -113,6 +116,7 @@
 }
 
 .menu-bar-item-text {
+  font-family: 'w95fa';
   color: black;
   font-size: 15px;
   float: left;

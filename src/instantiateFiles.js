@@ -9,7 +9,6 @@ import CosmoFileContents from './hooks/CosmoFile/CosmoFileContents.js';
 import SpaceInvadersContents from './hooks/SpaceInvaders/SpaceInvadersContents.js';
 import SpaceInvadersIcon from './hooks/SpaceInvaders/Earth.ico';
 import SpacestagramContents from './hooks/Spacestagram/SpacestagramContents.js';
-
 import AboutMeFileContents from './hooks/AboutMeFile/AboutMeFileContents.js';
 import userIcon from './hooks/AboutMeFile/User.ico';
 
@@ -90,6 +89,10 @@ const spacestagramData = {
     'initialHeight' : null
 }
 
+/**
+ * Function to instantiate the map data structure and populate it with data.
+ * @returns a Map data structure.
+ */
 export default function instantiateFiles() {
     var myMap = new Map();
 

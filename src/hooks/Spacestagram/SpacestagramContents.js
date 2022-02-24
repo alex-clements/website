@@ -1,12 +1,10 @@
-import React, {useEffect} from 'react';
-import captureAnalytics from '../../scripts/captureAnalytics.js';
+import React from 'react';
 
 export default function ReadMeContents(props) {
 
-  useEffect(() => {
-    captureAnalytics("spacestagram");
-}, []);
-
+  /**
+   * Object containing the style props for the component. 
+   */
   const styleProps = {
     "height": "100%",
     "width":"100%",

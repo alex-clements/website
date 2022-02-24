@@ -1,6 +1,4 @@
 import React, {useState, useRef} from 'react';
-import {motion} from 'framer-motion';
-
 
 export default function WindowBottomRightCorner(props) {
     const [currentY, setCurrentY] = useState(0);
@@ -9,12 +7,20 @@ export default function WindowBottomRightCorner(props) {
     const [startingX, setStartingX] = useState(0);
     const cornerRef = useRef();
 
+    /**
+     * Sets the style of the component depending on whether it is active or not.
+     * @returns 
+     */
     const secondStyle = () => {
-        return ({
-        "borderWidth": props.isActive ? "2px" : "1px"
-      })
+        return ({"borderWidth": props.isActive ? "2px" : "1px"})
       }
 
+      /**
+       * Starts a drag event. Sets the current Y and X positions of the dragged element.
+       * Calculates the difference between the starting Y and X positions and the current positions.
+       * Calls the onDragBottomRightCorner function in the parent component.
+       * @param {React.DragEvent} e 
+       */
     const handleDrag = (e) => {
         var yDiff = startingY - currentY;
         var xDiff = startingX - currentX;
@@ -23,6 +29,11 @@ export default function WindowBottomRightCorner(props) {
         setCurrentX(e.nativeEvent.clientX)
       }
     
+      /**
+       * Sets the current and starting Y and X positions of the corner elements. 
+       * Makes the ghost dragging image invisible.
+       * @param {React.DragEvent} e 
+       */
       const handleDragStart = (e) => {
         setCurrentY(e.nativeEvent.clientY);
         setStartingY(cornerRef.current.getBoundingClientRect().bottom);
@@ -37,6 +48,10 @@ export default function WindowBottomRightCorner(props) {
         e.dataTransfer.setDragImage(crt, 0, 0);
       }
 
+      /**
+       * Sets the current Y and X position on a touch event.
+       * @param {React.TouchEvent} e 
+       */
       const handleDragStartTouch = (e) => {
         setCurrentY(e.touches[0].clientY);
         setStartingY(cornerRef.current.getBoundingClientRect().bottom);
@@ -45,6 +60,9 @@ export default function WindowBottomRightCorner(props) {
         setStartingX(cornerRef.current.getBoundingClientRect().right)
       }
     
+      /**
+       * Ends the drag event by calling the onDragBottomRightCornerEnd method on the parent component.
+       */
       const handleDragEnd = () => {
         props.onDragBottomRightCornerEnd();
       }

@@ -20,6 +20,11 @@ export default function ReadMeFile(props) {
   const name = props.name;
   const fileId = props.fileId
 
+  /**
+   * Triggered upon component mount
+   * Sets the initial x and initial y positions of the file
+   * Sets the initial width and initial height of the file
+   */
   useEffect(() => {
     document.addEventListener('mousedown', outsideClickListener);
 
@@ -36,6 +41,11 @@ export default function ReadMeFile(props) {
     }
   }, []);
 
+  /**
+   * Handler function for the outside click listener. Sets the file to active
+   * when clicked, otherwise 
+   * @param {React.MouseEvent} e 
+   */
   const outsideClickListener = (e) => {
     if (thisElement.current.contains(e.target)) {
       setIsActive(true);
@@ -44,6 +54,10 @@ export default function ReadMeFile(props) {
     }
   }
 
+  /**
+   * @returns Style prop object, changing based on the active state, dragging status, x position,
+   * and y position of the component.
+   */
   const styleProps = () => {
     return (
       {
@@ -56,10 +70,16 @@ export default function ReadMeFile(props) {
         "transform": "translate3d(" + currentX + "px," + currentY + "px,0px)"
       })}
 
+  /**
+   * Handler function to set the active status oc the component to true when clicked on.
+   */
   const handleClick = () => {
     setIsActive(true);
   }
 
+  /**
+   * Handler function for a double click event.
+   */
   const handleDoubleClick = () => {
     var desktopIconX = 0;
     var desktopIconY = 0;
@@ -97,6 +117,10 @@ export default function ReadMeFile(props) {
                  0);
   }
 
+  /**
+   * Handler function for a drag start event. Sets the initial X and Y positions of the component.
+   * @param {React.DragEvent} e 
+   */
   const dragStart = (e) => {
     dragControls.start(e, { snapToCursor: false })
     
@@ -111,21 +135,31 @@ export default function ReadMeFile(props) {
     setTimeout(handleDragStart, 10);
   }
 
+  /**
+   * Handler function for a drag start event. Sets the dragging flag to true.
+   */
   const handleDragStart = () => {
     setDragging(true);
   }
 
+  /**
+   * Handler function for the end of a drag event. Sets the initial X and initial Y positions
+   * to the current X and Y positions. Sets the dragging state flag to false.
+   * @param {React.DragEvent} e 
+   */
   const dragEnd = (e) => {
     setInitialX(currentX);
     setInitialY(currentY);
-
     setDragging(false);
   }
 
+  /**
+   * Handler function for a drag event. Sets the current X and Y position the 
+   * X and Y offsets from the original positions.
+   * @param {React.DragEvent} e 
+   */
   const drag = (e) => {
     if (dragging) {
-      
-
       if (e.type === "touchmove") {
         setCurrentX(e.touches[0].clientX - initialX);
         setCurrentY(e.touches[0].clientY - initialY);
@@ -134,7 +168,6 @@ export default function ReadMeFile(props) {
         setCurrentX(e.clientX - initialX);
         setCurrentY(e.clientY - initialY);
       }
-
       setXOffset(currentX);
       setYOffset(currentY);
     }

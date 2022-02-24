@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import CosmoPicture from '../../data/cosmo.jpeg';
-import captureAnalytics from '../../scripts/captureAnalytics.js';
 
 export default function CosmoFileContents(props) {
 
-  useEffect(() => {
-    captureAnalytics("cosmo");
-  }, [])
-
+  /**
+   * Object with the style props for the cosmo picture.
+   */
   const styleProps = {
     "width" : "100%",
     "height" : "auto"

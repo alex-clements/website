@@ -1,14 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './AboutMe.css';
 import seymourPic from '../../data/SeymourPic.jpg';
-import captureAnalytics from '../../scripts/captureAnalytics.js';
 
 export default function AboutMeFileContents(props) {
 
-    useEffect(() => {
-        captureAnalytics("about me");
-    }, [])
-
+    /**
+     * Style props for the image in the component.
+     */
     const imageStyle={
         "width" : "100%",
         "height" : "auto",

@@ -3,6 +3,9 @@ import './readMeFile.css';
 
 export default function ReadMeContents(props) {
 
+  /**
+   * Object containing component styling.
+   */
   const styleProps = {
     "height": "100%",
     "width":"100%",

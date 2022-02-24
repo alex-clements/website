@@ -7,6 +7,10 @@ export default function OSScreen(props) {
     const [topSpace, setTopSpace] = useState(true);
     const [topSpaceTimer, setTopSpaceTimer] = useState(0);
 
+    /**
+     * Triggered on component mount.
+     * Sets the timer for moving the main block of text.
+     */
     useEffect(() => {
         const interval = setInterval(() => {
           setTopSpaceTimer(topSpaceTimer => topSpaceTimer + 1);
@@ -15,19 +19,28 @@ export default function OSScreen(props) {
         return () => clearInterval(interval);
       }, []);
 
-      const initialProps = {
-          top: "0px"
-      }
+    /**
+     * Obejct with the initial animation props for the main block of text.
+     */
+    const initialProps = {
+        top: "0px"
+    }
 
-      const animatedProps = () => {
-          return ({
-            top: topSpace ? "50px" : "0px"
-          })
-      }
+    /**
+     * @returns The animation props for the main block of text.
+     */
+    const animatedProps = () => {
+        return ({
+          top: topSpace ? "50px" : "0px"
+        })
+    }
 
-      const transitionProps = {
-          duration: 0
-      }
+    /**
+     * Object containing the transition props for the main block of text.
+     */
+    const transitionProps = {
+        duration: 0
+    }
 
     return (
             <div onClick={props.onComplete} className="os-screen text-center container-fluid">

@@ -1,6 +1,10 @@
 import fileStructure from './fileStructureClass.js';
 import instantiateFiles from './instantiateFiles.js';
 
+/**
+ * Function for instantiating a "File Structure" data structure, and populating the contents
+ * @returns a File Structure data structure.
+ */
 export default function instantiateFileStructure() {
 
     var cDrive = new fileStructure();

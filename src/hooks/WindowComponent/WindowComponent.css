@@ -66,6 +66,8 @@
 }
 
 .window-component-contents-inner-border {
+  margin-right: 0px;
+  margin-left: 0px;
   background-color: #bbbbbb;
   height: 100%;
   border: solid;

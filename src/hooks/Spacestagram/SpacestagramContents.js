@@ -13,7 +13,7 @@ export default function ReadMeContents(props) {
   }
 
   return (
-    <iframe src="https://alex-clements.github.io/spacestagram/" style={styleProps}>
+    <iframe src="https://alex-clements.github.io/spacestagram/" style={styleProps} title="spacestagram">
     </iframe>
   )
 }

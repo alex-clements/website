@@ -10,7 +10,7 @@ export default function MenuBar(props) {
   const [buttonActive, setButtonActive] = useState(false);
 
   /**
-   * Triggered by prop udpates.
+   * Triggered by prop updates.
    */
   useEffect(() => {
   }, [props]);

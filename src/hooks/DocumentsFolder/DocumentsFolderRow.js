@@ -7,6 +7,7 @@ export default function DocumentsFolderRow(props) {
 
     /**
      * Triggered upon component mount.
+     * Adds an outside click listener to the component.
      */
     useEffect(() => {
         document.addEventListener('mousedown', outsideClickListener);
@@ -32,24 +33,27 @@ export default function DocumentsFolderRow(props) {
       }
 
     /**
-     * Function for opening the selected file in a new application window.
+     * Handler for opening the selected file in a new application window.
      */
     const handleOpenFile = () => {
-        props.onOpenFile(
-            props.fileId,
-            props.initialWidth != null ? props.initialWidth : window.innerWidth * 3 / 4, 
-            props.initialHeight != null ? props.initialHeight : window.innerHeight * 3 / 4, 
-            200, 
-            200, 
-            window.innerWidth/2 - (props.initialWidth != null ? props.initialWidth : window.innerWidth * 3 / 4) / 2, 
-            window.innerHeight/2 - (props.initialHeight != null ? props.initialHeight : window.innerHeight * 3 / 4) / 2, 
-            props.name, 
-            props.contents, 
-            props.icon,
-            0,
-            0,
-            0,
-            0)
+        const data = {
+            'activeID': props.data.fileId,
+            'initialWindowWidth': props.data.initialWidth != null ? props.data.initialWidth : window.innerWidth * 3 / 4,
+            'initialWindowHeight': props.data.initialHeight != null ? props.data.initialHeight : window.innerHeight * 3 / 4, 
+            'minWindowWidth': 200,
+            'minWindowHeight': 200,
+            'initialLeft': window.innerWidth/2 - (props.data.initialWidth != null ? props.data.initialWidth : window.innerWidth * 3 / 4) / 2,
+            'initialTop':  window.innerHeight/2 - (props.data.initialHeight != null ? props.data.initialHeight : window.innerHeight * 3 / 4) / 2, 
+            'windowTitle': props.data.name,
+            'component': props.data.contents,
+            'icon': props.data.icon,
+            'desktopIconX': 0,
+            'desktopIconY': 0,
+            'menuIconX': 0,
+            'menuIconY': 0
+        }
+
+        props.onOpenFile(data);
     }
 
     /**
@@ -65,15 +69,15 @@ export default function DocumentsFolderRow(props) {
      * @param {React.DragEvent} e 
      */
     const onDragStart = (e) => {
-        e.dataTransfer.setData("drag-item", props.fileId);
+        e.dataTransfer.setData("drag-item", props.data.fileId);
     }
 
     return (
         <tr className="documents-table-row px-0 mx-0" ref={thisElement} className={styleProps()} draggable="true" onDragStart={onDragStart}>
             <td className="px-0 py-0 mx-0">
                 <div className="d-flex flex-row" onDoubleClick={handleOpenFile}>
-                    <img height="=20" width="20" className="float-left px-1 py-1" src={props.icon} />
-                    <p className="mb-0 float-left">{props.name}</p>
+                    <img height="=20" width="20" className="float-left px-1 py-1" src={props.data.icon} />
+                    <p className="mb-0 float-left">{props.data.name}</p>
                 </div>
             </td>
         </tr>

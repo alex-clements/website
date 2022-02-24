@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './LoadScreen.css';
 import { init } from 'ityped'
 
 
 export default function LoadScreen(props) {
-    const [stopFlag, setStopped] = useState(false);
 
     useEffect(() => {
         const myElement1 = document.querySelector('#myElement1')

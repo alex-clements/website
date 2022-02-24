@@ -7,8 +7,6 @@ export default function ReadMeFile(props) {
   const [initialY, setInitialY] = useState(0);
   const [initialX, setInitialX] = useState(0);
   const [dragging, setDragging] = useState(false);
-  const [originalWidth, setOriginalWidth] = useState(0);
-  const [originalHeight, setOriginalHeight] = useState(0);
   const [xOffset, setXOffset] = useState(props.initialX);
   const [yOffset, setYOffset] = useState(props.initialY);
   const [currentX, setCurrentX] = useState(props.initialX);
@@ -28,13 +26,8 @@ export default function ReadMeFile(props) {
   useEffect(() => {
     document.addEventListener('mousedown', outsideClickListener);
 
-    const box = thisElement.current.getBoundingClientRect();
-
     setInitialY(thisElement.current.getBoundingClientRect().y);
     setInitialX(thisElement.current.getBoundingClientRect().x);
-
-    setOriginalWidth(box.width);
-    setOriginalHeight(box.height);
 
     return function cleanup() {
       document.removeEventListener('mousedown', outsideClickListener)
@@ -85,36 +78,25 @@ export default function ReadMeFile(props) {
     var desktopIconY = 0;
     var initialWindowWidth = props.initialWidth == null ? window.innerWidth * 3 / 4 : props.initialWidth;
     var initialWindowHeight = props.initialHeight == null ? window.innerHeight * 3 / 4 : props.initialHeight;
+    var initialTop = window.innerHeight/2 - initialWindowHeight / 2;
+    var initialLeft = window.innerWidth/2 - initialWindowWidth/2;
 
+    var data = {'activeID': fileId, 
+        'initialWindowWidth': initialWindowWidth, 
+        'initialWindowHeight': initialWindowHeight, 
+        'minWindowWidth': 200, 
+        'minWindowHeight': 200, 
+        'initialLeft': initialLeft,
+        'initialTop': initialTop,
+        'windowTitle': name, 
+        'component': FileContents, 
+        'icon': fileIcon, 
+        'desktopIconX': desktopIconX, 
+        'desktopIconY': desktopIconY, 
+        'menuIconX': 0, 
+        'menuIconY': 0}
 
-    // const addWindow = (activeID,
-    //     initialWindowWidth,
-    //     initialWindowHeight,
-    //     minWindowWidth, 
-    //     minWindowHeight, 
-    //     initialLeft, 
-    //     initialTop, 
-    //     windowTitle, 
-    //     component, 
-    //     icon,
-    //     desktopIconX,
-    //     desktopIconY,
-    //     menuIconX,
-    //     menuIconY)
-    props.onOpen(fileId, 
-                 initialWindowWidth, 
-                 initialWindowHeight, 
-                 200, 
-                 200, 
-                 window.innerWidth/2 - initialWindowWidth / 2, 
-                 window.innerHeight/2 - initialWindowHeight / 2, 
-                 name, 
-                 FileContents, 
-                 fileIcon,
-                 desktopIconX,
-                 desktopIconY,
-                 0,
-                 0);
+    props.onOpen(data);
   }
 
   /**

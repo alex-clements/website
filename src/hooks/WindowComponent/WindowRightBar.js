@@ -5,6 +5,10 @@ export default function WindowRightBar(props) {
   const [startingX, setStartingX] = useState(props.windowWidth);
   const barRef = useRef();
 
+  /**
+   * @returns An object with the component styling. Styling changes depending on whether
+   * the window component is active or not.
+   */
   const styleProps = () => {
     return ({
     "height": "100%",
@@ -16,12 +20,24 @@ export default function WindowRightBar(props) {
     })
   }
 
+  /**
+   * Handler function for a drag event on the right border of the window component.
+   * Updates the current X position of the element and calls the onDragBar function 
+   * on the parent component.
+   * @param {React.DragEvent} e 
+   */
   const handleDrag = (e) => {
     var diff = currentX - startingX;
     props.onDragBar(diff, true);
     setCurrentX(e.nativeEvent.clientX);
   }
 
+  /**
+   * Handler function to start the drag event on the component.
+   * Updates the current and starting X positions of the component.
+   * Makes the dragging ghost image invisible.
+   * @param {React.DragEvent} e 
+   */
   const handleDragStart = (e) => {
     setCurrentX(e.nativeEvent.clientX);
     setStartingX(barRef.current.getBoundingClientRect().x);
@@ -33,6 +49,11 @@ export default function WindowRightBar(props) {
     e.dataTransfer.setDragImage(crt, 0, 0);
   }
 
+  /**
+   * Handler function for ending the drag event on the right bar. 
+   * Calls the onDragRightBarEnd function in the parent component.
+   * @param {React.DragEvent} e 
+   */
   const handleDragEnd = (e) => {
     props.onDragRightBarEnd();
   }

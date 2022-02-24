@@ -1,17 +1,16 @@
-import ReadMeContents from './hooks/readMeFile/ReadMeContents.js';
-import ResumeContents from './hooks/resumeFile/ResumeContents.js';
-import DocumentsFolderContents from './hooks/DocumentsFolder/DocumentsFolderContents.js';
-import readMeFileIcon from './hooks/readMeFile/Notepad.ico';
-import resumeFileIcon from './hooks/resumeFile/WordPad document.ico';
-import fileFolderIcon from './data/Folder.ico';
-import imageIcon from './data/Painting.ico';
-import CosmoFileContents from './hooks/CosmoFile/CosmoFileContents.js';
-import SpaceInvadersContents from './hooks/SpaceInvaders/SpaceInvadersContents.js';
-import SpaceInvadersIcon from './hooks/SpaceInvaders/Earth.ico';
-import SpacestagramContents from './hooks/Spacestagram/SpacestagramContents.js';
-
-import AboutMeFileContents from './hooks/AboutMeFile/AboutMeFileContents.js';
-import userIcon from './hooks/AboutMeFile/User.ico';
+import ReadMeContents from '../hooks/readMeFile/ReadMeContents.js';
+import ResumeContents from '../hooks/resumeFile/ResumeContents.js';
+import DocumentsFolderContents from '../hooks/DocumentsFolder/DocumentsFolderContents.js';
+import readMeFileIcon from '../hooks/readMeFile/Notepad.ico';
+import resumeFileIcon from '../hooks/resumeFile/WordPad document.ico';
+import fileFolderIcon from '../data/Folder.ico';
+import imageIcon from '../data/Painting.ico';
+import CosmoFileContents from '../hooks/CosmoFile/CosmoFileContents.js';
+import SpaceInvadersContents from '../hooks/SpaceInvaders/SpaceInvadersContents.js';
+import SpaceInvadersIcon from '../hooks/SpaceInvaders/Earth.ico';
+import SpacestagramContents from '../hooks/Spacestagram/SpacestagramContents.js';
+import AboutMeFileContents from '../hooks/AboutMeFile/AboutMeFileContents.js';
+import userIcon from '../hooks/AboutMeFile/User.ico';
 
 const readMeFileData = {
     'fileId': 1,
@@ -90,6 +89,10 @@ const spacestagramData = {
     'initialHeight' : null
 }
 
+/**
+ * Function to instantiate the map data structure and populate it with data.
+ * @returns a Map data structure.
+ */
 export default function instantiateFiles() {
     var myMap = new Map();
 

@@ -5,6 +5,10 @@ export default function WindowLeftBar(props) {
   const [startingX, setStartingX] = useState(props.windowHeight);
   const barRef = useRef();
 
+  /**
+   * @returns Object with styling for the component. Styling changes depending on whether 
+   * the window is active or not.
+   */
   const styleProps = () => {
     return ({
     "height": "100%",
@@ -16,12 +20,22 @@ export default function WindowLeftBar(props) {
   })
   }
 
+  /**
+   * Handler function for a drag event on the left border. This calls the onDragBar function 
+   * in the parent component.
+   * @param {React.DragEvent} e 
+   */
   const handleDrag = (e) => {
     var diff = startingX - currentX;
     props.onDragBar(diff, true);
     setCurrentX(e.nativeEvent.clientX);
   }
 
+  /**
+   * Handler function to start a drag event. Updates the current and starting X positions, and
+   * makes the ghost dragging image invisible.
+   * @param {React.DragEvent} e 
+   */
   const handleDragStart = (e) => {
     setCurrentX(e.nativeEvent.clientX);
     setStartingX(barRef.current.getBoundingClientRect().x);
@@ -33,6 +47,10 @@ export default function WindowLeftBar(props) {
     e.dataTransfer.setDragImage(crt, 0, 0);
   }
 
+  /**
+   * Handler function to end the drag event. Calls the onDragLeftBarEnd function in the 
+   * parent component.
+   */
   const handleDragEnd = () => {
     props.onDragLeftBarEnd();
   }

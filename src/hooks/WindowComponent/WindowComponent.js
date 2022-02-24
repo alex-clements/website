@@ -6,7 +6,6 @@ import WindowBottomBar from './WindowBottomBar.js';
 import WindowLeftBar from './WindowLeftBar.js';
 import WindowRightBar from './WindowRightBar.js';
 import WindowBottomRightCorner from './WindowBottomRightCorner.js';
-import captureAnalytics from '../../scripts/captureAnalytics.js';
 
 export default function WindowComponent(props) {
   const initialWindowWidth = props.initialWindowWidth;
@@ -45,6 +44,10 @@ export default function WindowComponent(props) {
   const dragControls = useDragControls()
   const thisElement = useRef()
 
+  /**
+   * Triggered upon component load.
+   * Adds a click event listener to to determine if a click was inside or outside the window.
+   */
   useEffect(() => {
     setMounted(true);
     document.addEventListener('mousedown', outsideClickListener);
@@ -54,16 +57,28 @@ export default function WindowComponent(props) {
     }
   }, []);
 
+  /**
+   * Triggered upon props update.
+   * Sets the active status of the window.
+   */
   useEffect(() => {
     setIsActive(props.activeStatus);
   }, [props])
 
+  /**
+   * Triggered upon the update of the minimizedFlag prop.
+   * Sets the minimized status of the current window.
+   */
   useEffect(() => {
     if (mounted) {
       handleMinimize();
     }
   }, [props.minimizedFlag])
 
+  /**
+   * Handler function for the outside click listener.
+   * @param {React.MouseEvent} e 
+   */
   const outsideClickListener = (e) => {
     if (thisElement.current == null) {
       return
@@ -73,10 +88,18 @@ export default function WindowComponent(props) {
     }
   }
 
+  /**
+   * Function to start a drag event to move the window component.
+   * @param {React.DragEvent} event 
+   */
   function startDrag(event) {
     dragControls.start(event, { snapToCursor: false })
   }
 
+  /**
+   * Function to set the animation values for the window component.
+   * @returns An object with the animation values.
+   */
   const animateVals = () => {
     return (
     {
@@ -88,6 +111,9 @@ export default function WindowComponent(props) {
       scale: minimizedFlag ? 0 : (exiting ? 0 : 1)
   })}
 
+  /**
+   * Object with the initial scale, opacity, top position, left position, width and height of the window.
+   */
   const initialVals = {
     scale: 0,
     opacity: 0,
@@ -97,6 +123,9 @@ export default function WindowComponent(props) {
     height: windowHeight
   }
 
+  /**
+   * Handler function to minimize the window.
+   */
   const handleMinimize = () => {
     if (!minimizedFlag) {
       setMinimizing(true);
@@ -110,29 +139,36 @@ export default function WindowComponent(props) {
     
   }
 
+  /**
+   * Calls the handleMinimize function on the parent component. This makes the window component invisible.
+   */
   const updatePropsMinimizedFlag = () => {
     props.handleMinimize(props.index);
-    captureAnalytics("window minimized");
   }
 
+  /**
+   * @returns object with the animation props for mounting, exiting, minimizing, or maximizing the component.
+   */
   const transitionProps = () => {
     if (!mounted || exiting || maximizing || minimizing) {
-      return (
-        {
-          duration: 0.3
-        })}
-    return (
-      {
-        ease: "linear",
-        duration: 0
-      })}
+      return ({duration: 0.3})
+    }
+    return ({ease: "linear",duration: 0})
+  }
 
+  /**
+   * Handler function for closing a window. This removes the window from the parent's active windows object.
+   */
   const handleClose = () => {
-    captureAnalytics("window closed");
     setExiting(true);
     setTimeout(function() {props.test(props.index);}, 300);
   }
 
+  /**
+   * Handler function for an event dragging the top bar of the window component.
+   * @param {number} diff 
+   * @param {boolean} dragging 
+   */
   const handleDragTopBar = (diff, dragging) => {
     if (windowHeight + diff >= minWindowHeight) {
       setDraggingWindowHeight(windowHeight + diff);
@@ -142,6 +178,12 @@ export default function WindowComponent(props) {
     setDragging(dragging);
   }
 
+  /**
+   * Handler function to end the top bar dragging event.
+   * Updates the window height, the top position of the window, the top dragging constraint
+   * (so the window can not be dragged off the top of the screen), and sets the dragging 
+   * flag to "false".
+   */
   const handleDragTopBarEnd = () => {
     setWindowHeight(draggingWindowHeight);
     setWindowTop(draggingWindowTop);
@@ -149,6 +191,11 @@ export default function WindowComponent(props) {
     setDragging(false);
   }
 
+  /**
+   * Handler function for the dragging of the bottom border of the window component.
+   * @param {number} diff 
+   * @param {boolean} dragging 
+   */
   const handleDragBottomBar = (diff, dragging) => {
     if (windowHeight + diff >= minWindowHeight) {
       setDraggingWindowHeight(windowHeight + diff);
@@ -156,11 +203,21 @@ export default function WindowComponent(props) {
     setDragging(dragging);
   }
 
+  /**
+   * Handler function to end the bottom bar dragging event.
+   * Updates the window height and sets the dragging flag to false.
+   */
   const handleDragBottomBarEnd = () => {
     setWindowHeight(draggingWindowHeight);
     setDragging(false);
   }
 
+  /**
+   * Handler function for the right bar dragging event.
+   * Ensures that a window is not compressed beyond its minimim width.
+   * @param {number} diff 
+   * @param {boolean} dragging 
+   */
   const handleDragRightBar = (diff, dragging) => {
     if (windowWidth + diff >= minWindowWidth) {
       setDraggingWindowWidth(windowWidth + diff);
@@ -168,11 +225,21 @@ export default function WindowComponent(props) {
     setDragging(dragging);
   }
 
+  /**
+   * Handler function for ending the drag event of the right bar.
+   * Updates the window width and sets the dragging state flag to false.
+   */
   const handleDragRightBarEnd = () => {
     setWindowWidth(draggingWindowWidth);
     setDragging(false);
   }
 
+  /**
+   * Handler function for an event dragging the left bar of the window component.
+   * Does not allow the window to be compressed beyond its minimum width.
+   * @param {number} diff 
+   * @param {boolean} dragging 
+   */
   const handleDragLeftBar = (diff, dragging) => {
     if (windowWidth + diff >= minWindowWidth) {
       setDraggingWindowWidth(windowWidth + diff);
@@ -182,6 +249,12 @@ export default function WindowComponent(props) {
     setDragging(dragging);
   }
 
+  /**
+   * Handler function for ending the left border dragging event.
+   * Updates the window width, the window left position, the left dragging constraint (so
+   * the window can't be dragged off the left edge of the screen).
+   * Sets the dragging state flag to false.
+   */
   const handleDragLeftBarEnd = () => {
     setWindowWidth(draggingWindowWidth);
     setWindowLeft(draggingWindowLeft);
@@ -189,6 +262,14 @@ export default function WindowComponent(props) {
     setDragging(false);
   }
 
+  /**
+   * Handler function for the drag event on the bottom right corner of the window.
+   * Prevents the window from being compressed beyond its minimum width and height.
+   * Updates the dragging state flag.
+   * @param {number} xDiff 
+   * @param {number} yDiff 
+   * @param {boolean} dragging 
+   */
   const handleDragBottomRightCorner = (xDiff, yDiff, dragging) => {
     if ((windowHeight - yDiff) > minWindowHeight) {
       setDraggingWindowHeight(windowHeight - yDiff);
@@ -200,14 +281,20 @@ export default function WindowComponent(props) {
     setDragging(dragging);
   }
 
+  /**
+   * Handler function to end the drag event on the bottom right corner of the window.
+   * Updates the window height, the window width, and sets the dragging state flag to false.
+   */
   const handleDragBottomRightCornerEnd = () => {
     setWindowHeight(draggingWindowHeight);
     setWindowWidth(draggingWindowWidth);
     setDragging(false);
   }
 
+  /**
+   * Handler function to maximize the window component.
+   */
   const handleMaximize = () => {
-    captureAnalytics("window maximized");
     if (!maximizedFlag) {
       setMaximizing(true);
       setMaximizedFlag(true);
@@ -228,6 +315,10 @@ export default function WindowComponent(props) {
     }
   }
 
+  /**
+   * @returns an object with the dragging constraints on the window, to prevent it from being
+   * dragged off the left of the screen or the top of the screen.
+   */
   const dragConstraintsProps = () => {
     return (
     {
@@ -235,6 +326,10 @@ export default function WindowComponent(props) {
     top: dragging ? topDraggingDragConstraint : topDragConstraint
     })}
 
+  /**
+   * @returns an object with styling for the window component. Styling changes depending on whether the
+   * window is active or not.
+   */
   const componentStyle = () => {
     return (
       {
@@ -243,11 +338,31 @@ export default function WindowComponent(props) {
         "position" : "absolute"
       })}
 
-    
+  /**
+   * Function for launching a new application. To be used with components containing folders listing
+   * other applications.
+   * @param {*} a 
+   * @param {*} b 
+   * @param {*} c 
+   * @param {*} d 
+   * @param {*} e 
+   * @param {*} f 
+   * @param {*} g 
+   * @param {*} h 
+   * @param {*} i 
+   * @param {*} j 
+   * @param {*} k 
+   * @param {*} l 
+   * @param {*} m 
+   * @param {*} n 
+   */
   function testFunction(a,b,c,d,e,f,g,h,i,j,k,l,m,n) {
     props.onOpenFile(a,b,c,d,e,f,g,h,i,j,k,l,m,n)
   }
 
+  /**
+   * Obejct containing props for the border of the inner component.
+   */
   const contentsBorderStyleProps = {
     "height": "calc(100% - 30px)",
     "width":"100%"

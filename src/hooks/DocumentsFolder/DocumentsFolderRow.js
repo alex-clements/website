@@ -5,14 +5,21 @@ export default function DocumentsFolderRow(props) {
     const thisElement = useRef(null);
     const [isActive, setIsActive] = useState(false);
 
+    /**
+     * Triggered upon component mount.
+     */
     useEffect(() => {
         document.addEventListener('mousedown', outsideClickListener);
-    
         return function cleanup() {
           document.removeEventListener('mousedown', outsideClickListener)
         }
     }, [])
 
+    /**
+     * Click listener determining if the last click was within the bounds of this component.
+     * @param {React.MouseEvent} e 
+     * @returns none
+     */
     const outsideClickListener = (e) => {
         if (thisElement.current == null) {
           return
@@ -24,7 +31,9 @@ export default function DocumentsFolderRow(props) {
         }
       }
 
-
+    /**
+     * Function for opening the selected file in a new application window.
+     */
     const handleOpenFile = () => {
         props.onOpenFile(
             props.fileId,
@@ -43,17 +52,21 @@ export default function DocumentsFolderRow(props) {
             0)
     }
 
+    /**
+     * Function for determining the style of the given documents folder row
+     * @returns string representing class name of active or inactive component
+     */
     const styleProps = () => {
         return isActive ? 'documents-table-row mx-0 documents-row-active documents-text' : 'documents-row-inactive documents-table-row mx-0 documents-text';
     }
 
-
-
+    /**
+     * Function for handling a drag event for when the documents item row is being dragged to another folder.
+     * @param {React.DragEvent} e 
+     */
     const onDragStart = (e) => {
-
         e.dataTransfer.setData("drag-item", props.fileId);
     }
-
 
     return (
         <tr className="documents-table-row px-0 mx-0" ref={thisElement} className={styleProps()} draggable="true" onDragStart={onDragStart}>

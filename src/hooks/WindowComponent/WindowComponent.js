@@ -6,7 +6,6 @@ import WindowBottomBar from './WindowBottomBar.js';
 import WindowLeftBar from './WindowLeftBar.js';
 import WindowRightBar from './WindowRightBar.js';
 import WindowBottomRightCorner from './WindowBottomRightCorner.js';
-import captureAnalytics from '../../scripts/captureAnalytics.js';
 
 export default function WindowComponent(props) {
   const initialWindowWidth = props.initialWindowWidth;
@@ -145,7 +144,6 @@ export default function WindowComponent(props) {
    */
   const updatePropsMinimizedFlag = () => {
     props.handleMinimize(props.index);
-    captureAnalytics("window minimized");
   }
 
   /**
@@ -162,7 +160,6 @@ export default function WindowComponent(props) {
    * Handler function for closing a window. This removes the window from the parent's active windows object.
    */
   const handleClose = () => {
-    captureAnalytics("window closed");
     setExiting(true);
     setTimeout(function() {props.test(props.index);}, 300);
   }
@@ -298,7 +295,6 @@ export default function WindowComponent(props) {
    * Handler function to maximize the window component.
    */
   const handleMaximize = () => {
-    captureAnalytics("window maximized");
     if (!maximizedFlag) {
       setMaximizing(true);
       setMaximizedFlag(true);

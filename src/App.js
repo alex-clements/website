@@ -5,11 +5,10 @@ import MenuBar from './hooks/MenuBar/MenuBar.js'
 import LoadScreen from './hooks/LoadScreen/LoadScreen.js';
 import OSScreen from './hooks/osScreen/osScreen.js';
 import ShutdownScreen from './hooks/ShutdownScreen/ShutdownScreen.js';
-import instantiateFileStructure from './instantiateFileStructure.js';
-import instantiateFileStructureFromData from './instantiateFileStructureFromData.js';
-import instantiateFiles from './instantiateFiles.js';
+import instantiateFileStructure from './scripts/instantiateFileStructure.js';
+import instantiateFileStructureFromData from './scripts/instantiateFileStructureFromData.js';
+import instantiateFiles from './scripts/instantiateFiles.js';
 import DesktopFile from './hooks/DesktopFile/DesktopFile.js';
-import captureAnalytics from './scripts/captureAnalytics.js';
 
 function App() {
   const [windows, setWindows] = useState([])
@@ -64,7 +63,6 @@ function App() {
   useEffect(() => {
     document.addEventListener('mousedown', outsideClickListener);
     setFileStructure(instantiateFileStructure());
-    captureAnalytics('landing page');
 
     return function cleanup() {
       document.removeEventListener('mousedown', outsideClickListener)
@@ -277,8 +275,8 @@ function App() {
 
   /**
    * Updates the left position and the top position of an active file.
-   * @param {number} topPosition top position of the file's window
-   * @param {number} leftPosition left position of the file's window
+   * @param {number} topPosition top position of the file's menu icon
+   * @param {number} leftPosition left position of the file's menu icon
    * @param {number} activeID activeID of the given file
    */
   const handleFileIconMount = (topPosition, leftPosition, activeID) => {

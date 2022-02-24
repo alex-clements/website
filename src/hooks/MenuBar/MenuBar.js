@@ -4,19 +4,20 @@ import MenuBarMenu from './MenuBarMenu.js';
 import MenuBarItem from './MenuBarItem.js';
 import MenuBarDateTime from './MenuBarDateTime';
 
-
-
 export default function MenuBar(props) {
   const [menuVisible, setMenuVisible] = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
   const [buttonActive, setButtonActive] = useState(false);
 
-
+  /**
+   * Triggered by prop udpates.
+   */
   useEffect(() => {
   }, [props]);
 
-
-
+  /**
+   * Function for expanding the menu bar menu.
+   */
   const expandMenu = () => {
     if (!menuVisible) {
       setButtonActive(!buttonActive);
@@ -29,14 +30,29 @@ export default function MenuBar(props) {
     
   }
 
+  /**
+   * Handler function for a click event.
+   * Calls the onIconSelect function in the parent component.
+   * @param {React.MouseEvent} activeID 
+   */
   const handleClick = (activeID) => {
     props.onIconSelect(activeID);
   }
 
+  /**
+   * Handler function for a file mount. MAY BE REDUNDANT. CHECK TO SEE IF THIS CAN BE REMOVED.
+   * @param {number} topPosition  top position 
+   * @param {number} leftPosition 
+   * @param {number} activeID 
+   */
   const handleFileIconMount = (topPosition, leftPosition, activeID) => {
     props.onFileIconMount(topPosition, leftPosition, activeID);
   }
 
+  /**
+   * Handler function for the shut down button. Calls the onShutDown function in the parent
+   * component.
+   */
   const handleShutDown = () => {
     props.onShutDown();
   }

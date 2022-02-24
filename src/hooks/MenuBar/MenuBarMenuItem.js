@@ -5,10 +5,16 @@ import offIcon from './turnOffComputer.ico';
 export default function MenuBarMenuItem(props) {
     const [hoverState, setHoverState] = useState(false);
 
+    /**
+     * Handler function for a hover event over the component.
+     */
     const handleHover = () => {
         setHoverState(!hoverState);
     }
 
+    /**
+     * Style props for the image to be displayed with the menu bar menu item component.
+     */
     const imageStyle = {
         "position": "relative",
         "float": "left",
@@ -16,10 +22,17 @@ export default function MenuBarMenuItem(props) {
         "paddingLeft": "5px"
     }
 
+    /**
+     * Style props for the text displayed in teh menu bar menu item component.
+     */
     const textStyle = {
         "padding-top": "10px"
     }
 
+    /**
+     * Handler function for a click event on the component.
+     * Calls the handleMenyItemClick function in the parent component.
+     */
     const handleClick = () => {
         props.handleMenuItemClick(props.item);
     }

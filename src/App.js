@@ -20,47 +20,9 @@ function App() {
   const [shutDownScreen, setShutDownScreen] = useState(false);
 
   /**
-   * Creates all the windows to add to the screen.
-   * @returns React components
-   */
-  const createWindows = () => {
-    return windows.map((item) =>
-      <WindowComponent
-        key={item['id']}
-        index={item['id']}
-        test={(e) => RemoveWindow(e)}
-        id={"window_" + item['id']}
-        passedComponent={item['component']}
-        initialWindowWidth={item['initialWindowWidth']}
-        initialWindowHeight={item['initialWindowHeight']}
-        minWindowWidth={item['minWindowWidth']}
-        minWindowHeight={item['minWindowHeight']}
-        initialLeft={item['initialLeft']}
-        initialTop={item['initialTop']}
-        windowTitle={item['windowTitle']}
-        activeStatus={item['activeStatus']}
-        handleActiveStatusChange={(e) => changeActiveItemIndex(e)}
-        icon={item["icon"]}
-        desktopIconX={item["desktopIconX"]}
-        desktopIconY={item["desktopIconY"]}
-        menuIconX={item["menuIconX"]}
-        menuIconY={item["menuIconY"]}
-        maximizedFlag={item["maximizedFlag"]}
-        minimizedFlag={item["minimizedFlag"]}
-        handleMinimize={(e) => changeMinimizedStatus(e)}
-        onOpenFile={(activeID,initialWindowWidth,initialWindowHeight,minWindowWidth,minWindowHeight, initialLeft, 
-          initialTop,windowTitle,component,icon,desktopIconX,desktopIconY,menuIconX,menuIconY) => addWindow(activeID,
-          initialWindowWidth,initialWindowHeight,minWindowWidth,minWindowHeight,initialLeft,initialTop,windowTitle,
-          component,icon,desktopIconX,desktopIconY,menuIconX,menuIconY)}
-        fileStructure={fileStructure}
-        />
-    )
-  }
-
-  /**
    * Adds click event listener to launch the outsideClickListener function
    */
-  useEffect(() => {
+   useEffect(() => {
     document.addEventListener('mousedown', outsideClickListener);
     setFileStructure(instantiateFileStructure());
 
@@ -78,89 +40,69 @@ function App() {
    * @param {React.MouseEvent} e 
    * @returns 
    */
-  const outsideClickListener = (e) => {
-    if (desktopElement.current == null) {
-      return
+     const outsideClickListener = (e) => {
+      if (desktopElement.current == null) {
+        return
+      }
+      if (desktopElement.current == e.target) {
+        changeActiveItemIndex(0);
+      }
     }
-    if (desktopElement.current == e.target) {
-      changeActiveItemIndex(0);
-    }
+
+  /**
+   * Creates all the windows to add to the screen.
+   * @returns React components
+   */
+  const createWindows = () => {
+    return windows.map((item) =>
+      <WindowComponent
+        key={item.id}
+        data={item}
+        onRemoveWindow={(e) => handleRemoveWindow(e)}
+        handleActiveStatusChange={(e) => changeActiveItemIndex(e)}
+        handleMinimize={(e) => changeMinimizedStatus(e)}
+        onOpenFile={(data) => addWindow(data)}
+        fileStructure={fileStructure}
+        />
+    )
   }
 
   /**
-   * adds a new window object to the array of windows
-   * @param {*} activeID 
-   * @param {*} initialWindowWidth 
-   * @param {*} initialWindowHeight 
-   * @param {*} minWindowWidth 
-   * @param {*} minWindowHeight 
-   * @param {*} initialLeft 
-   * @param {*} initialTop 
-   * @param {*} windowTitle 
-   * @param {*} component 
-   * @param {*} icon 
-   * @param {*} desktopIconX 
-   * @param {*} desktopIconY 
-   * @param {*} menuIconX 
-   * @param {*} menuIconY 
-   * @returns 
+   * Function for adding a window to the list of active windows.
+   * @param {Object} data 
    */
-  const addWindow = (activeID,
-                     initialWindowWidth,
-                     initialWindowHeight,
-                     minWindowWidth, 
-                     minWindowHeight, 
-                     initialLeft, 
-                     initialTop, 
-                     windowTitle, 
-                     component, 
-                     icon,
-                     desktopIconX,
-                     desktopIconY,
-                     menuIconX,
-                     menuIconY) => {
+  const addWindow = (data) => {
     var lastInt = currentKey;
     var currentWindows = [...windows]
 
     for (var i=0; i<windows.length; i++) {
-      if (windows[i]["activeID"] == activeID) {
+      if (windows[i]["activeID"] == data.activeID) {
         changeActiveItemIndex(windows[i]["id"])
         return
       }
     }
 
-    // current window data:
-    // id - index of window open
-    // activeId - unique id of open program
-    // minWindowWidth - min allowable width of open window
-    // minWindowHeight - min allowable height of open window
-    // initialLeft - initial left position of the window
-    // initialTop - initial top position of the window
-    // windowTitle - text appearing in the header bar of the window
-    // component - functional component of the window body contents
-    // activeStatus - indicates if this is the active top level window
     currentWindows.push({"id": lastInt, 
-                         "activeID" : activeID, 
-                         "minWindowWidth": minWindowWidth, 
-                         "minWindowHeight" : minWindowHeight,
-                         "initialWindowWidth": initialWindowWidth,
-                         "initialWindowHeight" : initialWindowHeight,
-                         "initialLeft" : initialLeft, 
-                         "initialTop" : initialTop, 
-                         "windowTitle" : windowTitle, 
-                         "component" : component, 
+                         "activeID" : data.activeID, 
+                         "minWindowWidth": data.minWindowWidth, 
+                         "minWindowHeight" : data.minWindowHeight,
+                         "initialWindowWidth": data.initialWindowWidth,
+                         "initialWindowHeight" : data.initialWindowHeight,
+                         "initialLeft" : data.initialLeft, 
+                         "initialTop" : data.initialTop, 
+                         "windowTitle" : data.windowTitle, 
+                         "component" : data.component, 
                          "activeStatus": true, 
-                         "icon" : icon,
-                         "desktopIconX" : desktopIconX,
-                         "desktopIconY" : desktopIconY,
-                         "menuIconX" : menuIconX,
-                         "menuIconY" : menuIconY,
+                         "icon" : data.icon,
+                         "desktopIconX" : data.desktopIconX,
+                         "desktopIconY" : data.desktopIconY,
+                         "menuIconX" : data.menuIconX,
+                         "menuIconY" : data.menuIconY,
                          "maximizedFlag" : false,
                          "minimizedFlag" : false,
                          "fileStructure" : fileStructure
                         });
     setWindows(currentWindows);
-
     changeActiveItemIndex(lastInt);
     setCurrentKey(lastInt + 1);
   }
@@ -169,13 +111,14 @@ function App() {
    * removes a window from the active windows at the given index
    * @param {number} index 
    */
-  const RemoveWindow = (index) => {
+  const handleRemoveWindow = (index) => {
     var currentWindows = [...windows]
     var targetIndex = -1;
 
     for (var i=0; i<currentWindows.length; i++) {
       if (currentWindows[i]['id'] == index) {
         targetIndex = i;
+        break;
       }
     }
 
@@ -222,11 +165,7 @@ function App() {
       return {...el}
     }
 
-    setWindows(windows => (
-      windows.map(
-        (el) => subFunction(el)
-      )
-    ))
+    setWindows(windows => (windows.map((el) => subFunction(el))))
   }
 
   /**
@@ -247,11 +186,7 @@ function App() {
       }
     }
 
-    setWindows(windows => (
-      windows.map(
-        (el) => subFunction(el)
-      )
-    ))
+    setWindows(windows => (windows.map((el) => subFunction(el))))
   }
 
   /**
@@ -261,7 +196,8 @@ function App() {
   const createMenuItems = () => {
     var iconList = [];
     for (var i=0; i<windows.length; i++) {
-      iconList.push({"activeStatus" : windows[i]["activeStatus"], "activeID": windows[i]["activeID"], "icon" : windows[i]["icon"], "windowTitle" : windows[i]["windowTitle"]})
+      iconList.push({"activeStatus" : windows[i]["activeStatus"], "activeID": windows[i]["activeID"], 
+                     "icon" : windows[i]["icon"], "windowTitle" : windows[i]["windowTitle"]})
     }
     return iconList;
   }
@@ -274,7 +210,7 @@ function App() {
   }
 
   /**
-   * Updates the left position and the top position of an active file.
+   * Updates the left position and the top position of a desktop file.
    * @param {number} topPosition top position of the file's menu icon
    * @param {number} leftPosition left position of the file's menu icon
    * @param {number} activeID activeID of the given file
@@ -294,7 +230,6 @@ function App() {
   const handleOsComplete = () => {
     setOSScreenComplete(true);
     var target = document.getElementById('readMeFile')
-
     setTimeout(function() {
       var doubleClickEvent = document.createEvent('MouseEvents');
       doubleClickEvent.initEvent('dblclick', true, true);

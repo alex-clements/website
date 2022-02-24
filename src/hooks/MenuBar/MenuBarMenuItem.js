@@ -31,7 +31,7 @@ export default function MenuBarMenuItem(props) {
 
     /**
      * Handler function for a click event on the component.
-     * Calls the handleMenyItemClick function in the parent component.
+     * Calls the handleMenuItemClick function in the parent component.
      */
     const handleClick = () => {
         props.handleMenuItemClick(props.item);

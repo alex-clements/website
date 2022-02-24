@@ -28,23 +28,10 @@ export default function DocumentsFolderContents(props, fileStructureProps) {
     /**
      * Function for passing data from a child component through to the application component to open
      * a new file window.
-     * @param {*} a 
-     * @param {*} b 
-     * @param {*} c 
-     * @param {*} d 
-     * @param {*} e 
-     * @param {*} f 
-     * @param {*} g 
-     * @param {*} h 
-     * @param {*} i 
-     * @param {*} j 
-     * @param {*} k 
-     * @param {*} l 
-     * @param {*} m 
-     * @param {*} n 
+     * @param {Object} data
      */
-    const handleOpenFile = (a, b, c, d, e, f, g, h, i, j, k, l, m, n) => {
-        props(a, b, c, d, e, f, g, h, i, j, k, l, m, n);
+    const handleOpenFile = (data) => {
+        props(data);
     }
 
     /**
@@ -80,23 +67,9 @@ export default function DocumentsFolderContents(props, fileStructureProps) {
         if (fileStructure != null) {
             var fs = instantiateFileStructureFromData(fileStructure);
             return ( 
-                <table className="table table-borderless documents-table-no-margin mx-0 px-0">
-                    <thead className="documents-table-heading">
-                        <tr>
-                            <td scope="col">
-                                <div className="d-flex flex-row">
-                                <p className="mb-0 font-global">Filename</p>
-                                </div>
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {fs.getChildren()[0].getData().map((item, index) => (
-                        <DocumentsFolderRow key={index} onOpenFile={handleOpenFile} name={item.name} icon={item.icon} fileId={item.fileId}
-                        initialWidth={item.initialWidth} initialHeight={item.initialHeight} contents={item.contents} id={item.id} dataType={item.dataType}/>
-                    ))}
-                    </tbody>
-                </table>
+                fs.getChildren()[0].getData().map((item, index) => (
+                    <DocumentsFolderRow key={index} onOpenFile={handleOpenFile} data={item}/>
+                ))
             )
         } else {
             return (<div></div>)
@@ -112,7 +85,20 @@ export default function DocumentsFolderContents(props, fileStructureProps) {
 
     return (
     <div id="documents" style={styleProps}>
-        {renderFiles()}
+        <table className="table table-borderless documents-table-no-margin mx-0 px-0">
+            <thead className="documents-table-heading">
+                <tr>
+                    <td scope="col">
+                        <div className="d-flex flex-row">
+                        <p className="mb-0 font-global">Filename</p>
+                        </div>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                {renderFiles()}
+            </tbody>
+        </table>
     </div>
     )
 }

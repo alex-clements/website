@@ -43,7 +43,6 @@ export default function WindowRightBar(props) {
     setStartingX(barRef.current.getBoundingClientRect().x);
 
     var crt = e.target.cloneNode(true);
-    crt.style.backgroundColor = "red";
     crt.style.opacity = 0;
     document.body.appendChild(crt);
     e.dataTransfer.setDragImage(crt, 0, 0);

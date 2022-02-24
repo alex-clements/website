@@ -8,13 +8,13 @@ import WindowRightBar from './WindowRightBar.js';
 import WindowBottomRightCorner from './WindowBottomRightCorner.js';
 
 export default function WindowComponent(props) {
-  const initialWindowWidth = props.initialWindowWidth;
-  const initialWindowHeight = props.initialWindowHeight;
-  const minWindowWidth = props.minWindowWidth;
-  const minWindowHeight = props.minWindowHeight;
-  const initialLeft = props.initialLeft;
-  const initialTop = props.initialTop;
-  const windowTitle = props.windowTitle;
+  const initialWindowWidth = props.data.initialWindowWidth;
+  const initialWindowHeight = props.data.initialWindowHeight;
+  const minWindowWidth = props.data.minWindowWidth;
+  const minWindowHeight = props.data.minWindowHeight;
+  const initialLeft = props.data.initialLeft;
+  const initialTop = props.data.initialTop;
+  const windowTitle = props.data.windowTitle;
 
   const [windowTop, setWindowTop] = useState(initialTop);
   const [draggingWindowTop, setDraggingWindowTop] = useState(initialTop);
@@ -32,14 +32,14 @@ export default function WindowComponent(props) {
 
   const [mounted, setMounted] = useState(false);
   const [exiting, setExiting] = useState(false);
-  const [isActive, setIsActive] = useState(props.activeStatus);
+  const [isActive, setIsActive] = useState(props.data.activeStatus);
   const [dragging, setDragging] = useState(false);
 
   const [maximizing, setMaximizing] = useState(false);
   const [maximizedFlag, setMaximizedFlag] = useState(false);
 
   const [minimizing, setMinimizing] = useState(false);
-  const [minimizedFlag, setMinimizedFlag] = useState(props.minimizedFlag);
+  const [minimizedFlag, setMinimizedFlag] = useState(props.data.minimizedFlag);
 
   const dragControls = useDragControls()
   const thisElement = useRef()
@@ -58,22 +58,16 @@ export default function WindowComponent(props) {
   }, []);
 
   /**
-   * Triggered upon props update.
-   * Sets the active status of the window.
-   */
-  useEffect(() => {
-    setIsActive(props.activeStatus);
-  }, [props])
-
-  /**
-   * Triggered upon the update of the minimizedFlag prop.
+   * Triggered upon the update of the data prop.
    * Sets the minimized status of the current window.
+   * Updates the active status of the current window.
    */
   useEffect(() => {
-    if (mounted) {
+    setIsActive(props.data.activeStatus);
+    if (mounted && props.data.minimizedFlag != minimizedFlag) {
       handleMinimize();
     }
-  }, [props.minimizedFlag])
+  }, [props.data])
 
   /**
    * Handler function for the outside click listener.
@@ -84,7 +78,7 @@ export default function WindowComponent(props) {
       return
     }
     if (thisElement.current.contains(e.target)) {
-      props.handleActiveStatusChange(props.index);
+      props.handleActiveStatusChange(props.data.id);
     }
   }
 
@@ -114,7 +108,7 @@ export default function WindowComponent(props) {
   /**
    * Object with the initial scale, opacity, top position, left position, width and height of the window.
    */
-  const initialVals = {
+  const initialAnimationVals = {
     scale: 0,
     opacity: 0,
     top: windowTop,
@@ -136,14 +130,13 @@ export default function WindowComponent(props) {
       setMinimizedFlag(false);
       setTimeout(function() {setMinimizing(false)}, 1000);
     }
-    
   }
 
   /**
    * Calls the handleMinimize function on the parent component. This makes the window component invisible.
    */
   const updatePropsMinimizedFlag = () => {
-    props.handleMinimize(props.index);
+    props.handleMinimize(props.data.id);
   }
 
   /**
@@ -161,7 +154,7 @@ export default function WindowComponent(props) {
    */
   const handleClose = () => {
     setExiting(true);
-    setTimeout(function() {props.test(props.index);}, 300);
+    setTimeout(function() {props.onRemoveWindow(props.data.id);}, 300);
   }
 
   /**
@@ -341,23 +334,10 @@ export default function WindowComponent(props) {
   /**
    * Function for launching a new application. To be used with components containing folders listing
    * other applications.
-   * @param {*} a 
-   * @param {*} b 
-   * @param {*} c 
-   * @param {*} d 
-   * @param {*} e 
-   * @param {*} f 
-   * @param {*} g 
-   * @param {*} h 
-   * @param {*} i 
-   * @param {*} j 
-   * @param {*} k 
-   * @param {*} l 
-   * @param {*} m 
-   * @param {*} n 
+   * @param {Object} data application data object
    */
-  function testFunction(a,b,c,d,e,f,g,h,i,j,k,l,m,n) {
-    props.onOpenFile(a,b,c,d,e,f,g,h,i,j,k,l,m,n)
+  function openNewApplication(data) {
+    props.onOpenFile(data)
   }
 
   /**
@@ -377,12 +357,12 @@ export default function WindowComponent(props) {
       dragMomentum={false}
       dragConstraints={dragConstraintsProps()}
       dragElastic={0}
-      initial={initialVals}
+      initial={initialAnimationVals}
       animate={animateVals()}
       transition={transitionProps()}
       className="test-component-main"
       style={componentStyle()}
-      id={props.id}
+      id={props.data.id}
       ref={thisElement}
       >
         <WindowTopBar isActive={isActive} onDragBar={handleDragTopBar} onDragTopBarEnd={handleDragTopBarEnd}/>
@@ -390,7 +370,7 @@ export default function WindowComponent(props) {
         <div className="container-fluid px-0">
         <motion.div onPointerDown={maximizedFlag ? null : startDrag} className="header-bar row mx-0">
             <div className="col-6 px-0 d-flex justify-content-start">
-              <img className="mt-1" height="20px" src={props.icon} />
+              <img className="mt-1" height="20px" src={props.data.icon} />
               <p className="font-header-bar my-0 mx-2">{windowTitle}</p>
             </div>
             <div className="col-6 px-0 d-flex justify-content-end">
@@ -403,7 +383,7 @@ export default function WindowComponent(props) {
         </motion.div>
             <div className="py-2 px-2 window-component-contents-border" style={contentsBorderStyleProps}>
               <div className="window-component-contents-inner-border">
-                {props.passedComponent != null ? props.passedComponent(testFunction, props.fileStructure) : null}
+                {props.data.component != null ? props.data.component(openNewApplication, props.fileStructure) : null}
               </div>
             </div>
         </div>

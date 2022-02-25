@@ -130,7 +130,7 @@ function App() {
   }
 
   /**
-   * set the window at the provided index to active
+   * Sets the window at the provided index to active
    * @param {number} index 
    */
   const changeActiveItemIndex = (index) => {

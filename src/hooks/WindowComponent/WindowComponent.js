@@ -6,6 +6,8 @@ import WindowBottomBar from './WindowBottomBar.js';
 import WindowLeftBar from './WindowLeftBar.js';
 import WindowRightBar from './WindowRightBar.js';
 import WindowBottomRightCorner from './WindowBottomRightCorner.js';
+import WindowHeaderBarButtons from './WindowHeaderBarButtons.js';
+import WindowHeaderBarTitle from './WindowHeaderBarTitle.js';
 
 export default function WindowComponent(props) {
   const initialWindowWidth = props.data.initialWindowWidth;
@@ -368,24 +370,15 @@ export default function WindowComponent(props) {
         <WindowTopBar isActive={isActive} onDragBar={handleDragTopBar} onDragTopBarEnd={handleDragTopBarEnd}/>
         <WindowLeftBar isActive={isActive} onDragBar={handleDragLeftBar} onDragLeftBarEnd={handleDragLeftBarEnd}/>
         <div className="container-fluid px-0">
-        <motion.div onPointerDown={maximizedFlag ? null : startDrag} className="header-bar row mx-0">
-            <div className="col-6 px-0 d-flex justify-content-start">
-              <img className="mt-1" height="20px" src={props.data.icon} />
-              <p className="font-header-bar my-0 mx-2">{windowTitle}</p>
+          <motion.div onPointerDown={maximizedFlag ? null : startDrag} className="header-bar row mx-0">
+              <WindowHeaderBarTitle icon={props.data.icon} windowTitle={windowTitle} />
+              <WindowHeaderBarButtons onMinimize={updatePropsMinimizedFlag} onMaximize={handleMaximize} onClose={handleClose} />
+          </motion.div>
+          <div className="py-2 px-2 window-component-contents-border" style={contentsBorderStyleProps}>
+            <div className="window-component-contents-inner-border">
+              {props.data.component != null ? props.data.component(openNewApplication, props.fileStructure) : null}
             </div>
-            <div className="col-6 px-0 d-flex justify-content-end">
-              <div>
-                <button className="window-button" onClick={updatePropsMinimizedFlag}>_</button>
-                <button className="window-button" onClick={handleMaximize}>❏</button>
-                <button className="window-button" onClick={handleClose}>✕</button>
-              </div>
-            </div>
-        </motion.div>
-            <div className="py-2 px-2 window-component-contents-border" style={contentsBorderStyleProps}>
-              <div className="window-component-contents-inner-border">
-                {props.data.component != null ? props.data.component(openNewApplication, props.fileStructure) : null}
-              </div>
-            </div>
+          </div>
         </div>
         <WindowRightBar isActive={isActive} onDragBar={handleDragRightBar} onDragRightBarEnd={handleDragRightBarEnd}/>
         <WindowBottomRightCorner isActive={isActive} onDragBottomRightCorner={handleDragBottomRightCorner} onDragBottomRightCornerEnd={handleDragBottomRightCornerEnd} />

@@ -2,12 +2,13 @@
   position: absolute;
   overflow: hidden;
   background-color: #008080;
-  height: 100%;
+  height: calc(100% - 40px);
   width: 100%;
 }
 
 .App {
   overflow: hidden;
+  height: 100%;
 }
 
 .underline {
@@ -20,7 +21,7 @@
 
 .background-body-circle {
   border-radius: 50%;
-  background-color: #405E8C;
+  background-color: #405e8c;
   position: absolute;
   top: -25%;
   left: -5%;
@@ -36,17 +37,17 @@
 }
 
 .font-main {
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   font-size: 60px;
 }
 
 .font-global {
-  font-family: 'w95fa';
+  font-family: "w95fa";
   font-size: 20px;
 }
 
 .font-secondary {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 50px;
 }
 
@@ -61,11 +62,6 @@
 .border-true {
   border-style: solid;
 }
-
-/* .middle-align {
-  display: flex;
-  align-items: center;
-} */
 
 .App {
   text-align: center;
@@ -107,10 +103,10 @@
 }
 
 .highlightedNavBarItem {
-  text-shadow: 0px 2px 20px #fff  /* inner white */
+  text-shadow: 0px 2px 20px #fff; /* inner white */
 }
 
 @font-face {
-  font-family: 'W95FA';
-  src: local('W95FA'), url(w95fa.woff) format('woff');
+  font-family: "W95FA";
+  src: local("W95FA"), url(w95fa.woff) format("woff");
 }

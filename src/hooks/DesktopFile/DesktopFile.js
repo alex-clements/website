@@ -163,6 +163,11 @@ export default function ReadMeFile(props) {
     }
   };
 
+  /**
+   * Opens the window corresponding to the icon if the icon is in focus and
+   * Enter is pressed on the keyboard.
+   * @param {React.KeyboardEvent} e
+   */
   const handleKeyDown = (e) => {
     if (e.code === "Enter" && isActive) {
       handleDoubleClick();

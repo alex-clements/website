@@ -371,15 +371,12 @@ export default function WindowComponent(props) {
   };
 
   const handleDragWindow = (e, { delta }) => {
-    e.preventDefault();
-    console.log(delta);
     x.set(x.get() + delta.x);
     y.set(y.get() + delta.y);
   };
 
   return (
     <motion.div
-      // drag
       dragPropagation={true}
       dragListener={false}
       dragControls={dragControls}

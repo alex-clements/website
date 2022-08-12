@@ -180,11 +180,12 @@ export default function ResumeContents(props) {
 
       <h3>Technical & Computer Skills</h3>
       <ul>
-        <li>Proficient with Microsoft Word, Excel and PowerPoint</li>
         <li>
-          Knowledgeable in Python, HTML, Javascript, VBA, and C# programming
+          Experienced in Java, Javascript, Typescript, and C++ programming
           languages
         </li>
+        <li>Knowledgeable in Python, VBA, and C# programming languages</li>
+        <li>Proficient with Microsoft Word, Excel and PowerPoint</li>
       </ul>
     </div>
   );

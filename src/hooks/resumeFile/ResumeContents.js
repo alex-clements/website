@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./ResumeFile.css";
+import captureAnalytics from "../../scripts/captureAnalytics";
 
 export default function ResumeContents(props) {
   /**
@@ -10,6 +11,10 @@ export default function ResumeContents(props) {
     width: "100%",
     backgroundColor: "white",
   };
+
+  useEffect(() => {
+    captureAnalytics("resume");
+  }, []);
 
   return (
     <div

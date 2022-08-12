@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./AboutMe.css";
 import seymourPic from "../../data/SeymourPic.jpg";
+import captureAnalytics from "../../scripts/captureAnalytics";
 
 export default function AboutMeFileContents(props) {
   /**
@@ -11,6 +12,10 @@ export default function AboutMeFileContents(props) {
     height: "auto",
     marginBottom: "10px",
   };
+
+  useEffect(() => {
+    captureAnalytics("about me");
+  }, []);
 
   return (
     <div className="about-me-main px-md-5 px-lg-5 px-xl-5 px-sm-2 px-2 pt-2 text-start font-global">

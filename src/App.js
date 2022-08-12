@@ -9,6 +9,7 @@ import instantiateFileStructure from "./scripts/instantiateFileStructure.js";
 import instantiateFileStructureFromData from "./scripts/instantiateFileStructureFromData.js";
 import instantiateFiles from "./scripts/instantiateFiles.js";
 import DesktopFile from "./hooks/DesktopFile/DesktopFile.js";
+import captureAnalytics from "./scripts/captureAnalytics.js";
 
 function App() {
   const [windows, setWindows] = useState([]);
@@ -25,6 +26,7 @@ function App() {
   useEffect(() => {
     document.addEventListener("mousedown", outsideClickListener);
     setFileStructure(instantiateFileStructure());
+    captureAnalytics("landing page");
 
     return function cleanup() {
       document.removeEventListener("mousedown", outsideClickListener);

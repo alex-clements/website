@@ -13,7 +13,7 @@ export default function CosmoFileContents(props) {
 
   useEffect(() => {
     captureAnalytics("cosmo");
-  });
+  }, []);
 
   return <img style={styleProps} src={CosmoPicture} />;
 }

@@ -15,5 +15,5 @@ export default function CosmoFileContents(props) {
     captureAnalytics("cosmo");
   }, []);
 
-  return <img style={styleProps} src={CosmoPicture} />;
+  return <img alt={"Cosmo"} style={styleProps} src={CosmoPicture} />;
 }

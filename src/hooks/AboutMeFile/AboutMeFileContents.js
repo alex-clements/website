@@ -37,24 +37,24 @@ export default function AboutMeFileContents(props) {
       </p>
 
       <p className="">
-        I've completed two semesters in school now. So far I've finished courses
-        in Computation, Programs and Programming (CPSC 110), Models of
-        Computation (CPSC 121), Object-Oriented Programming (CPSC 210),
-        Introduction to Computer Systems (CPSC 213), and Basic Algorithms and
-        Data Structures (CPSC 221). These courses have proven to be challenging,
-        but very interesting and rewarding. Even just two semesters in, I
+        I've completed two and a half semesters in school now. So far I've
+        finished courses in Computation, Programs and Programming (CPSC 110),
+        Models of Computation (CPSC 121), Object-Oriented Programming (CPSC
+        210), Introduction to Computer Systems (CPSC 213), and Basic Algorithms
+        and Data Structures (CPSC 221). These courses have proven to be
+        challenging, but very interesting and rewarding. Even this far in, I
         already feel like I've made lots of progress towards becoming a better
-        software developer.
+        software engineer.
       </p>
 
       <p className="">
-        I'm currently completing a co-op at Workday, Inc. out of the office in
-        Vancouver, British Columbia. This is my first position as a software
-        engineer, and I'm loving it so far. There's been a lot to learn getting
-        up to speed on all the processes required for software development in a
-        professional environment. I hadn't ever realized just how much effort
-        was involved in testing, code reviews, and planning for new features.
-        It's been a great learning experience for sure!
+        I'm recently completed a Software Engineering co-op at Workday, Inc. out
+        of the office in Vancouver, British Columbia. It was my first position
+        as a software engineer, and I loved it. There's been a lot to learn
+        getting up to speed on all the processes required for software
+        development in a professional environment. I hadn't ever realized just
+        how much effort was involved in testing, code reviews, and planning for
+        new features. It's been a great learning experience for sure!
       </p>
 
       <p className="">
@@ -79,24 +79,25 @@ export default function AboutMeFileContents(props) {
         pet camera broke. I thought this would be a cool opportunity to try
         creating a streaming app of my own as a replacement! One of the
         shortcomings of the pet camera was that it only captured one angle at a
-        time. When Cosmo, her dog, walked out of view, it wasn't possible to see
-        where he was anymore. With Cosmocam, the benefit will be that you can
-        capture multiple camera angles and view them both to check in on your
-        pet.
+        time. When Cosmo, her Basset Hound, walked out of view, it wasn't
+        possible to see where he was anymore. With Cosmocam, the benefit will be
+        that you can capture multiple camera angles and view them all to check
+        in on your pet.
       </p>
 
       <p className="">
         When I'm not working on personal projects, assignments, or studying for
-        exams, I like to go mountain biking on Vancouver's North Shore, or
-        skiing up in Whistler. The environment around Vancouver is surreal.
-        There's a picture below that I took while biking one afternoon.
+        exams, I like to go mountain biking on Vancouver's North Shore, skiing
+        up in Whistler, and playing with Cosmo. The environment around Vancouver
+        is surreal. There's a picture below that I took while biking one
+        afternoon.
       </p>
 
       <p className="">Anyways, I hope you enjoy checking out the site!</p>
 
       <p className="">Alex</p>
 
-      <img style={imageStyle} src={seymourPic} />
+      <img alt={"Mount Seymour"} style={imageStyle} src={seymourPic} />
     </div>
   );
 }

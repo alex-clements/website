@@ -48,13 +48,13 @@ export default function AboutMeFileContents(props) {
       </p>
 
       <p className="">
-        I'm recently completed a Software Engineering co-op at Workday, Inc. out
-        of the office in Vancouver, British Columbia. It was my first position
-        as a software engineer, and I loved it. There's been a lot to learn
-        getting up to speed on all the processes required for software
-        development in a professional environment. I hadn't ever realized just
-        how much effort was involved in testing, code reviews, and planning for
-        new features. It's been a great learning experience for sure!
+        I've recently completed a Software Engineering co-op at Workday out of
+        the office in Vancouver, British Columbia. It was my first position as a
+        software engineer, and I loved it. There's been a lot to learn getting
+        up to speed on all the processes required for software development in a
+        professional environment. I hadn't ever realized just how much effort
+        was involved in testing, code reviews, and planning for new features.
+        It's been a great learning experience for sure!
       </p>
 
       <p className="">

@@ -37,24 +37,35 @@ export default function AboutMeFileContents(props) {
       </p>
 
       <p className="">
-        I've completed two and a half semesters in school now. So far I've
-        finished courses in Computation, Programs and Programming (CPSC 110),
-        Models of Computation (CPSC 121), Object-Oriented Programming (CPSC
-        210), Introduction to Computer Systems (CPSC 213), and Basic Algorithms
-        and Data Structures (CPSC 221). These courses have proven to be
-        challenging, but very interesting and rewarding. Even this far in, I
-        already feel like I've made lots of progress towards becoming a better
-        software engineer.
+        I've completed three semesters in school now. So far I've finished
+        courses in Computation, Programs and Programming (CPSC 110), Models of
+        Computation (CPSC 121), Object-Oriented Programming (CPSC 210),
+        Introduction to Computer Systems (CPSC 213), Algorithms and Data
+        Structures (CPSC 221 and CPSC 320), Operating Systems (CPSC 313),
+        Software Engineering (CPSC 310) and Networking (CPSC 317) These courses
+        have proven to be challenging, but very interesting and rewarding. Even
+        this far in, I already feel like I've made lots of progress towards
+        becoming a better software engineer.
       </p>
 
       <p className="">
-        I've recently completed a Software Engineering co-op at Workday out of
-        the office in Vancouver, British Columbia. It was my first position as a
-        software engineer, and I loved it. There's been a lot to learn getting
-        up to speed on all the processes required for software development in a
-        professional environment. I hadn't ever realized just how much effort
-        was involved in testing, code reviews, and planning for new features.
-        It's been a great learning experience for sure!
+        Last year (2022) I completed a Software Engineering internship at
+        Workday in Vancouver, British Columbia. It was my first position as a
+        software engineer, and I loved it. There was a lot to learn on all the
+        processes required for software development in a professional
+        environment. I hadn't ever realized just how much effort was involved in
+        testing, code reviews, and planning for new features. It was a great
+        learning experience!
+      </p>
+
+      <p className="">
+        Most recently, I finished a three-month internship with Roblox at their
+        office in San Mateo, California. I was on the Infrastructure team, on
+        the Edge Data Center pod. The work we did there was very cool. Our team
+        was responsible for maintaining and building the data centers at the
+        edge of the Roblox network. Three months is not a long time, so I had to
+        move very fast through onboarding and my projects. I learned so much at
+        this internship that I'll be able to carry forward throughout my career.
       </p>
 
       <p className="">
@@ -77,7 +88,7 @@ export default function AboutMeFileContents(props) {
         log into the web site from their phone and view all their streams
         simultaneously to see what's going on. I got the idea when my partner's
         pet camera broke. I thought this would be a cool opportunity to try
-        creating a streaming app of my own as a replacement! One of the
+        creating a streaming app of my own as a replacement. One of the
         shortcomings of the pet camera was that it only captured one angle at a
         time. When Cosmo, her Basset Hound, walked out of view, it wasn't
         possible to see where he was anymore. With Cosmocam, the benefit will be

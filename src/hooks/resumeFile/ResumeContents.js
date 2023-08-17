@@ -41,15 +41,52 @@ export default function ResumeContents(props) {
       <br />
       <h3>Employment History</h3>
 
-      <h4>Workday Inc., Vancouver, British Columbia</h4>
+      <h4>Roblox, San Mateo, California</h4>
       <div className="d-flex justify-content-between">
-        <p>Software Development Engineer Co-op</p>
-        <p>May 2022 - Present</p>
+        <p>
+          Software Development Engineer Intern (Infrastructure - Edge Data
+          Center)
+        </p>
+        <p>May 2023 - August 2023</p>
       </div>
       <ul>
         <li>
-          Developed reusable, accessible, and responsive React JS components in
-          line with design requirements using Typescript
+          Developed a robust and scalable Go-based framework to synchronize and
+          correct server hardware data across multiple databases, reducing
+          troubleshooting time during datacenter upgrade procedures
+        </li>
+        <li>
+          Automated manual runbooks using Go to simplify incident response
+          processes
+        </li>
+        <li>
+          Developed and deployed a controller to perform game server status
+          checks with the Kubernetes Resource Model
+        </li>
+        <li>
+          Wrote SQL procedures and API endpoints in C# to extend existing
+          database service
+        </li>
+        <li>
+          Collaborated with engineers from multiple teams to upgrade edge data
+          centers using technologies like Ansible, Nomad, Vault, Consul,
+          Terraform and shell scripts
+        </li>
+        <li>
+          Created and maintained infrastructure team documentation to provide
+          guides on newly developed tools and processes
+        </li>
+      </ul>
+
+      <h4>Workday, Vancouver, British Columbia</h4>
+      <div className="d-flex justify-content-between">
+        <p>Software Development Engineer Intern</p>
+        <p>May 2022 - December 2022</p>
+      </div>
+      <ul>
+        <li>
+          Developed reusable, accessible, and responsive React JS components
+          using Typescript
         </li>
         <li>
           Performed feature regression testing using the Cypress web testing
@@ -61,7 +98,6 @@ export default function ResumeContents(props) {
         </li>
         <li>
           Communicated knowledge of new technologies to the engineering team
-          during the bi-weekly team meetings
         </li>
       </ul>
 
@@ -186,10 +222,12 @@ export default function ResumeContents(props) {
       <h3>Technical & Computer Skills</h3>
       <ul>
         <li>
-          Experienced in Java, Javascript, Typescript, and C++ programming
-          languages
+          Industry experience with Javascript, Typescript, Go, and C#
+          programming languages
         </li>
-        <li>Knowledgeable in Python, VBA, and C# programming languages</li>
+        <li>
+          Experienced in Java, C, C++, Python, and VBA programming languages
+        </li>
         <li>Proficient with Microsoft Word, Excel and PowerPoint</li>
       </ul>
     </div>
